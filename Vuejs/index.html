@@ -10,7 +10,12 @@
 
 <body>
   <div id="app">
-    {{name}}
+    <button @click="fetchData">Ver preço</button>
+    <div v-if="data.latestPrice">
+      {{data.latestPrice}}
+      {{data.latestTime}}
+      {{data.companyName}}
+    </div>
   </div>
 </body>
 
