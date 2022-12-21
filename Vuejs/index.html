@@ -6,15 +6,32 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vue.js</title>
+  <style>
+    .maior {
+      color: green;
+    }
+
+    .menor {
+      color: red;
+    }
+  </style>
 </head>
 
 <body>
   <div id="app">
-    <button @click="fetchData">Ver preço</button>
-    <div v-if="data.latestPrice">
-      {{data.latestPrice}}
-      {{data.latestTime}}
-      {{data.companyName}}
+    <button @click="initFetch">Fetch data</button>
+    <div v-if="finished">
+      <div>
+        <h1 :class="marketValues[0].marketCap > marketValues[1].marketCap ? 'maior' : 'menor'">Empresa:
+          {{marketValues[0].companyName}}</h1>
+        Valor de mercado:<p>{{numberToCurrency(marketValues[0].marketCap)}}</p>
+      </div>
+      <div>
+        <h1 :class="marketValues[1].marketCap > marketValues[0].marketCap ? 'maior' : 'menor'">Empresa:
+          {{marketValues[1].companyName}}</h1>
+        Valor de mercado:<p>{{numberToCurrency(marketValues[1].marketCap)}}</p>
+      </div>
+
     </div>
   </div>
 </body>

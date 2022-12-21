@@ -1,16 +1,27 @@
 const options = {
   el: "#app",
   data: {
-    preco: 69,
-    total: 0,
-    data: "",
+    interprises: ["aapl", "googl"],
+    marketValues: [],
+    finished: false,
   },
   methods: {
-    async fetchData() {
+    async fetchData(interpriseName) {
       const data = await (
-        await fetch("https://api.origamid.dev/stock/aapl/quote")
+        await fetch(`https://api.origamid.dev/stock/${interpriseName}/quote`)
       ).json();
-      this.data = data;
+      this.marketValues.push(data);
+      if (this.marketValues.length === this.interprises.length)
+        this.finished = true;
+    },
+    initFetch() {
+      this.interprises.forEach(this.fetchData);
+    },
+    numberToCurrency(number) {
+      return number.toLocaleString("BRL", {
+        style: "currency",
+        currency: "BRL",
+      });
     },
   },
 };
