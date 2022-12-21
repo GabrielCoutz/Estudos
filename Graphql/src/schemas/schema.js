@@ -1,4 +1,5 @@
 import { gql } from "apollo-server";
+import { apiFiltersTypedef } from "../graphql/api-filters/typedef";
 import { postResolver, postTypeDef } from "../graphql/post/typedef";
 import { userResolver, userTypeDef } from "../graphql/user/typedef";
 
@@ -14,5 +15,10 @@ const rootResolvers = {
   },
 };
 
-export const typeDefs = [rootTypeDefs, userTypeDef, postTypeDef];
+export const typeDefs = [
+  rootTypeDefs,
+  userTypeDef,
+  postTypeDef,
+  apiFiltersTypedef,
+];
 export const resolvers = [rootResolvers, userResolver, postResolver];

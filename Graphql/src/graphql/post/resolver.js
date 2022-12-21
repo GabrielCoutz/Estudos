@@ -1,6 +1,8 @@
-export const post = () => ({ id: "1", title: "Title 1" });
+export const post = async (_, { id }, { getPost }) =>
+  await (await getPost(id)).json();
 
-export const posts = () => [
-  { id: "1", title: "Title 1" },
-  { id: "2", title: "Title 2" },
-];
+export const posts = async (_, { input }, { getPosts }) => {
+  const filters = new URLSearchParams(input).toString();
+  const data = await (await getPosts(`?${filters}`)).json();
+  return data;
+};

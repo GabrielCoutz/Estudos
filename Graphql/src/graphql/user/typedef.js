@@ -4,7 +4,7 @@ import { user, users } from "./resolver";
 export const userTypeDef = gql`
   extend type Query {
     user(id: ID!): User!
-    users: [User!]!
+    users(input: ApiFiltersInput): [User!]!
   }
   type User {
     id: ID!
