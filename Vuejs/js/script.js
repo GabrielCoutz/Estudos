@@ -1,29 +1,64 @@
 const options = {
   el: "#app",
   data: {
-    interprises: ["aapl", "googl"],
-    marketValues: [],
-    finished: false,
+    cursos: [
+      {
+        curso: "Web Design Completo",
+        link: "https://www.origamid.com/curso/web-design-completo/",
+        aulas: [
+          {
+            nome: "HTML e CSS",
+            tempo: "22min",
+          },
+          {
+            nome: "JavaScript",
+            tempo: "32min",
+          },
+          {
+            nome: "Formulários",
+            tempo: "12min",
+          },
+        ],
+      },
+      {
+        curso: "JavaScript Completo",
+        link: "https://www.origamid.com/curso/javascript-completo-es6/",
+        aulas: [
+          {
+            nome: "Variáveis",
+            tempo: "24min",
+          },
+          {
+            nome: "Arrays",
+            tempo: "13min",
+          },
+          {
+            nome: "Objetos",
+            tempo: "32min",
+          },
+        ],
+      },
+      {
+        curso: "WordPress como CMS",
+        link: "https://www.origamid.com/curso/wordpress-como-cms/",
+        aulas: [
+          {
+            nome: "ACF",
+            tempo: "24min",
+          },
+          {
+            nome: "Temas",
+            tempo: "13min",
+          },
+          {
+            nome: "Plugins",
+            tempo: "32min",
+          },
+        ],
+      },
+    ],
   },
-  methods: {
-    async fetchData(interpriseName) {
-      const data = await (
-        await fetch(`https://api.origamid.dev/stock/${interpriseName}/quote`)
-      ).json();
-      this.marketValues.push(data);
-      if (this.marketValues.length === this.interprises.length)
-        this.finished = true;
-    },
-    initFetch() {
-      this.interprises.forEach(this.fetchData);
-    },
-    numberToCurrency(number) {
-      return number.toLocaleString("BRL", {
-        style: "currency",
-        currency: "BRL",
-      });
-    },
-  },
+  methods: {},
 };
 
 const vm = new Vue(options);
