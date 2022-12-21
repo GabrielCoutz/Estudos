@@ -1,23 +1,20 @@
 import { gql } from "apollo-server";
+import { user, users } from "./resolver";
 
 export const userTypeDef = gql`
   extend type Query {
-    user: User!
+    user(id: ID!): User!
     users: [User!]!
   }
   type User {
     id: ID!
-    name: String!
+    firstName: String!
+    lastName: String!
+    userName: String!
+    indexRef: Int!
+    createdAt: String!
   }
 `;
-
-const user = () => ({ id: "1", name: "John" });
-
-const users = () => [
-  { id: "1", name: "John" },
-  { id: "2", name: "Xampson" },
-];
-
 export const userResolver = {
   Query: {
     user,
