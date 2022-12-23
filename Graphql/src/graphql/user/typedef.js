@@ -13,6 +13,7 @@ export const userTypeDef = gql`
     userName: String!
     indexRef: Int!
     createdAt: String!
+    posts: [Post!]!
   }
 `;
 export const userResolver = {

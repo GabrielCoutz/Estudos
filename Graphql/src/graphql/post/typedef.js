@@ -3,27 +3,8 @@ import { post, posts } from "./resolver";
 
 export const postTypeDef = gql`
   extend type Query {
-    post(id: ID!): PostResult!
+    post(id: ID!): Post!
     posts(input: ApiFiltersInput): [Post!]!
-  }
-
-  union PostResult = PostNotFound | PostTimeout | Post
-
-  interface PostError {
-    statusCode: Int!
-    message: String!
-  }
-
-  type PostNotFound implements PostError {
-    statusCode: Int!
-    message: String!
-    postId: String!
-  }
-
-  type PostTimeout implements PostError {
-    statusCode: Int!
-    message: String!
-    timeout: Int!
   }
 
   type Post {
@@ -31,29 +12,22 @@ export const postTypeDef = gql`
     title: String!
     body: String!
     indexRef: Int!
+    user: User!
     createdAt: String!
     teste: String!
   }
 `;
+
+export const user = async ({ userId }, _, { userDataLoader }) => {
+  return userDataLoader.load(userId);
+};
 
 export const postResolver = {
   Query: {
     post,
     posts,
   },
-  PostResult: {
-    __resolveType: (obj) => {
-      if (typeof obj.postId !== "undefined") return "PostNotFound";
-      if (typeof obj.timeout !== "undefined") return "PostTimeout";
-      if (typeof obj.id !== "undefined") return "Post";
-      return null;
-    },
-  },
-  PostError: {
-    __resolveType: (obj) => {
-      if (typeof obj.postId !== "undefined") return "PostNotFound";
-      if (typeof obj.timeout !== "undefined") return "PostTimeout";
-      return null;
-    },
+  Post: {
+    user,
   },
 };

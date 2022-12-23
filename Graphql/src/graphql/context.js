@@ -1,10 +1,6 @@
-const baseUrl = "http://localhost:3000";
-
-const getUser = (path = "") => fetch(`${baseUrl}/users/${path}`);
-const getUsers = (params = "") => fetch(`${baseUrl}/users${params}`);
-
-const getPost = (path = "") => fetch(`${baseUrl}/posts/${path}`);
-const getPosts = (params = "") => fetch(`${baseUrl}/posts${params}`);
+import { userDataLoaderFactory } from "./user/dataloaders";
+import { getUser, getUsers } from "./user/utils";
+import { getPost, getPosts } from "./post/utils";
 
 const context = () => {
   return {
@@ -12,6 +8,7 @@ const context = () => {
     getUsers,
     getPost,
     getPosts,
+    userDataLoader: userDataLoaderFactory(getUsers),
   };
 };
 
