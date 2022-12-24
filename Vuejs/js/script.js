@@ -1,64 +1,25 @@
 const options = {
   el: "#app",
   data: {
-    cursos: [
-      {
-        curso: "Web Design Completo",
-        link: "https://www.origamid.com/curso/web-design-completo/",
-        aulas: [
-          {
-            nome: "HTML e CSS",
-            tempo: "22min",
-          },
-          {
-            nome: "JavaScript",
-            tempo: "32min",
-          },
-          {
-            nome: "Formulários",
-            tempo: "12min",
-          },
-        ],
-      },
-      {
-        curso: "JavaScript Completo",
-        link: "https://www.origamid.com/curso/javascript-completo-es6/",
-        aulas: [
-          {
-            nome: "Variáveis",
-            tempo: "24min",
-          },
-          {
-            nome: "Arrays",
-            tempo: "13min",
-          },
-          {
-            nome: "Objetos",
-            tempo: "32min",
-          },
-        ],
-      },
-      {
-        curso: "WordPress como CMS",
-        link: "https://www.origamid.com/curso/wordpress-como-cms/",
-        aulas: [
-          {
-            nome: "ACF",
-            tempo: "24min",
-          },
-          {
-            nome: "Temas",
-            tempo: "13min",
-          },
-          {
-            nome: "Plugins",
-            tempo: "32min",
-          },
-        ],
-      },
-    ],
+    selected: "",
+    countries: {},
   },
-  methods: {},
+  methods: {
+    async fetchCountries() {
+      const data = await (
+        await fetch("https://restcountries.com/v2/all")
+      ).json();
+      this.countries = data;
+    },
+  },
+  computed: {
+    countryCapital() {
+      const { capital } = this.countries.find(
+        (country) => country.name === this.selected
+      );
+      return capital;
+    },
+  },
 };
 
 const vm = new Vue(options);

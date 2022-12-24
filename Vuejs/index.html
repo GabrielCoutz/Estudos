@@ -17,17 +17,18 @@
 
 <body>
   <div id="app">
-    <ul>
-      <li v-for="item in cursos" :key="item.curso">
-        <h1>{{item.curso}}</h1>
-        <ul>
-          <li v-for="aulas in item.aulas" :key="aulas.nome">
-            <h3>{{aulas.nome}}</h3>
-            <span>{{aulas.tempo}}</span>
-          </li>
-        </ul>
-      </li>
-    </ul>
+    <button @click="fetchCountries">Load Countries</button>
+    <br>
+    <br>
+    <br>
+    <br>
+    <select name="countries" id="countries" v-model="selected">
+      <option disabled selected value="">Select a country</option>
+      <option v-for="{name} in countries" :value="name">
+        {{name}}
+      </option>
+    </select>
+    <h3 v-if="selected"> Capital from selected country: {{countryCapital}}</h3>
   </div>
 </body>
 
