@@ -1,25 +1,15 @@
 const options = {
   el: "#app",
   data: {
-    selected: "",
-    countries: {},
+    color: "",
   },
   methods: {
-    async fetchCountries() {
-      const data = await (
-        await fetch("https://restcountries.com/v2/all")
-      ).json();
-      this.countries = data;
+    generateRandomColor() {
+      this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
     },
   },
-  computed: {
-    countryCapital() {
-      const { capital } = this.countries.find(
-        (country) => country.name === this.selected
-      );
-      return capital;
-    },
-  },
+  computed: {},
+  watch: {},
 };
 
 const vm = new Vue(options);
