@@ -30,6 +30,13 @@
       gap: 1rem;
       align-items: flex-start;
     }
+
+    #form {
+      grid-column: 1/-1;
+      display: flex;
+      flex-direction: column;
+
+    }
   </style>
 </head>
 
@@ -52,10 +59,10 @@
       <input type="text" id="textAlign" v-model="buttonStyle.textAlign">
 
       <label for="background">background</label>
-      <input type="text" id="background" v-model="buttonStyle.background">
+      <input type="color" id="background" v-model="buttonStyle.background">
 
       <label for="color">color</label>
-      <input type="text" id="color" v-model="buttonStyle.color">
+      <input type="color" id="color" v-model="buttonStyle.color">
 
       <label for="borderRadius">border-radius</label>
       <input type="number" id="borderRadius" v-model="buttonStyle.borderRadius">
@@ -63,6 +70,24 @@
 
     <div>
       <button :style="insertButtonStyles">Botão</button>
+    </div>
+
+    <div>
+      <form @submit.prevent id="form">
+        <label for="name">Nome</label>
+        <input type="text" name="name" id="name" v-model="user.name">
+
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" v-model="user.email">
+
+        <label for="tel">Tekefone</label>
+        <input type="text" name="tel" id="tel" v-model="user.phone">
+
+        <label for="mensagem">Mensagem</label>
+        <textarea name="mensagem" id="mensagem" cols="30" rows="10" v-model="user.message"></textarea>
+        <button @click="showUserData">Enviar</button>
+      </form>
+      <div id="userResult"></div>
     </div>
   </div>
 </body>

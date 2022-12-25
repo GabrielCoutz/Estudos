@@ -7,12 +7,25 @@ const options = {
       fontSize: "",
       fontFamily: "",
       textAlign: "",
-      background: "",
-      color: "",
+      background: "#rrggbb",
+      color: "#rrggbb",
       borderRadius: "",
     },
+    user: {
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+    },
   },
-  methods: {},
+  methods: {
+    showUserData() {
+      const path = document.querySelector("#userResult");
+      for (key in this.user) {
+        path.innerText += `${key}: ${this.user[key]}\n`;
+      }
+    },
+  },
   computed: {
     insertButtonStyles() {
       return {
