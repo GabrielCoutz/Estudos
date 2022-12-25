@@ -13,19 +13,57 @@
       color: white;
     }
 
-    #xampson {
-      height: 300px;
-      width: 300px;
-      border-radius: 24px;
-      background-color: white;
+    #app {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      justify-items: start;
+      gap: 1rem;
+    }
+
+    label {
+      font-family: monospace;
+    }
+
+    #buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
     }
   </style>
 </head>
 
 <body>
   <div id="app">
-    <button @click="generateRandomColor">Generate random color</button>
-    <div id="xampson" :style="{backgroundColor: color}"></div>
+    <div id="buttons">
+      <label for="width">width</label>
+      <input type="number" id="width" v-model="buttonStyle.width">
+
+      <label for="height">height</label>
+      <input type="number" id="height" v-model="buttonStyle.height">
+
+      <label for="fontSize">font-size</label>
+      <input type="number" id="fontSize" v-model="buttonStyle.fontSize">
+
+      <label for="fontFamily">font-family</label>
+      <input type="number" id="fontFamily" v-model="buttonStyle.fontFamily">
+
+      <label for="textAlign">text-align</label>
+      <input type="number" id="textAlign" v-model="buttonStyle.textAlign">
+
+      <label for="background">background</label>
+      <input type="number" id="background" v-model="buttonStyle.background">
+
+      <label for="color">color</label>
+      <input type="number" id="color" v-model="buttonStyle.color">
+
+      <label for="borderRadius">border-radius</label>
+      <input type="number" id="borderRadius" v-model="buttonStyle.borderRadius">
+    </div>
+
+    <div>
+      <button :style="buttonStyle">Botão</button>
+    </div>
   </div>
 </body>
 

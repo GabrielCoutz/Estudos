@@ -1,13 +1,18 @@
 const options = {
   el: "#app",
   data: {
-    color: "",
-  },
-  methods: {
-    generateRandomColor() {
-      this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+    buttonStyle: {
+      width: "300px",
+      height: "300px",
+      fontSize: "",
+      fontFamily: "",
+      textAlign: "",
+      background: "",
+      color: "",
+      borderRadius: "",
     },
   },
+  methods: {},
   computed: {},
   watch: {},
 };
