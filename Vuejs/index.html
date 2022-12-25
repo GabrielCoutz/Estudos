@@ -37,7 +37,7 @@
   <div id="app">
     <div id="buttons">
       <label for="width">width</label>
-      <input type="number" id="width" v-model="buttonStyle.width">
+      <input type="number" id="width" v-model.lazy="buttonStyle.width">
 
       <label for="height">height</label>
       <input type="number" id="height" v-model="buttonStyle.height">
@@ -46,23 +46,23 @@
       <input type="number" id="fontSize" v-model="buttonStyle.fontSize">
 
       <label for="fontFamily">font-family</label>
-      <input type="number" id="fontFamily" v-model="buttonStyle.fontFamily">
+      <input type="text" id="fontFamily" v-model="buttonStyle.fontFamily">
 
       <label for="textAlign">text-align</label>
-      <input type="number" id="textAlign" v-model="buttonStyle.textAlign">
+      <input type="text" id="textAlign" v-model="buttonStyle.textAlign">
 
       <label for="background">background</label>
-      <input type="number" id="background" v-model="buttonStyle.background">
+      <input type="text" id="background" v-model="buttonStyle.background">
 
       <label for="color">color</label>
-      <input type="number" id="color" v-model="buttonStyle.color">
+      <input type="text" id="color" v-model="buttonStyle.color">
 
       <label for="borderRadius">border-radius</label>
       <input type="number" id="borderRadius" v-model="buttonStyle.borderRadius">
     </div>
 
     <div>
-      <button :style="buttonStyle">Botão</button>
+      <button :style="insertButtonStyles">Botão</button>
     </div>
   </div>
 </body>

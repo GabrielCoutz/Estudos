@@ -2,8 +2,8 @@ const options = {
   el: "#app",
   data: {
     buttonStyle: {
-      width: "300px",
-      height: "300px",
+      width: "",
+      height: "",
       fontSize: "",
       fontFamily: "",
       textAlign: "",
@@ -13,7 +13,17 @@ const options = {
     },
   },
   methods: {},
-  computed: {},
+  computed: {
+    insertButtonStyles() {
+      return {
+        ...this.buttonStyle,
+        width: this.buttonStyle.width + "px",
+        height: this.buttonStyle.height + "px",
+        fontSize: this.buttonStyle.fontSize + "px",
+        borderRadius: this.buttonStyle.borderRadius + "px",
+      };
+    },
+  },
   watch: {},
 };
 
