@@ -16,9 +16,17 @@ export const userTypeDef = gql`
     posts: [Post!]!
   }
 `;
+
+const posts = ({ id }, _, { postDataLoader }) => {
+  return postDataLoader.load(id);
+};
+
 export const userResolver = {
   Query: {
     user,
     users,
+  },
+  User: {
+    posts,
   },
 };

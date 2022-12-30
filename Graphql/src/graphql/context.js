@@ -1,6 +1,7 @@
 import { userDataLoaderFactory } from "./user/dataloaders";
 import { getUser, getUsers } from "./user/utils";
 import { getPost, getPosts } from "./post/utils";
+import { postDataLoaderFactory } from "./post/dataloaders";
 
 const context = () => {
   return {
@@ -9,6 +10,7 @@ const context = () => {
     getPost,
     getPosts,
     userDataLoader: userDataLoaderFactory(getUsers),
+    postDataLoader: postDataLoaderFactory(getPosts),
   };
 };
 
