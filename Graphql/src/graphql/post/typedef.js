@@ -1,5 +1,5 @@
 import { gql } from "apollo-server";
-import { post, posts, createPost } from "./resolver";
+import { post, posts, createPost, updatePost, deletePost } from "./resolver";
 
 export const postTypeDef = gql`
   extend type Query {
@@ -9,6 +9,8 @@ export const postTypeDef = gql`
 
   extend type Mutation {
     createPost(data: CreatePostInput!): Post!
+    updatePost(postId: ID!, data: UpdatePostInput!): Post!
+    deletePost(postId: ID!): Boolean!
   }
 
   type Post {
@@ -24,6 +26,12 @@ export const postTypeDef = gql`
     title: String!
     body: String!
     userId: String!
+  }
+
+  input UpdatePostInput {
+    title: String
+    body: String
+    userId: String
   }
 `;
 
@@ -41,5 +49,7 @@ export const postResolver = {
   },
   Mutation: {
     createPost,
+    updatePost,
+    deletePost,
   },
 };
