@@ -1,10 +1,14 @@
 import { gql } from "apollo-server";
-import { post, posts } from "./resolver";
+import { post, posts, createPost } from "./resolver";
 
 export const postTypeDef = gql`
   extend type Query {
     post(id: ID!): Post!
     posts(input: ApiFiltersInput): [Post!]!
+  }
+
+  extend type Mutation {
+    createPost(data: CreatePostInput!): Post!
   }
 
   type Post {
@@ -14,6 +18,12 @@ export const postTypeDef = gql`
     indexRef: Int!
     user: User!
     createdAt: String!
+  }
+
+  input CreatePostInput {
+    title: String!
+    body: String!
+    userId: String!
   }
 `;
 
@@ -28,5 +38,8 @@ export const postResolver = {
   },
   Post: {
     user,
+  },
+  Mutation: {
+    createPost,
   },
 };
