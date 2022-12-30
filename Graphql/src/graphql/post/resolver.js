@@ -1,10 +1,5 @@
-export const post = async (_, { id }, { getPost }) => {
-  const data = await (await getPost(id)).json();
-  return data;
-};
+export const post = async (_, { id }, { dataSources }) =>
+  dataSources.postApi.getPost(id);
 
-export const posts = async (_, { input }, { getPosts }) => {
-  const filters = new URLSearchParams(input).toString();
-  const data = await (await getPosts(`?${filters}`)).json();
-  return data;
-};
+export const posts = async (_, { input }, { dataSources }) =>
+  dataSources.postApi.getPosts(input);

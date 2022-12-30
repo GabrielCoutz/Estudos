@@ -17,8 +17,8 @@ export const userTypeDef = gql`
   }
 `;
 
-const posts = ({ id }, _, { postDataLoader }) => {
-  return postDataLoader.load(id);
+const posts = ({ id }, _, { dataSources }) => {
+  return dataSources.postApi.dataLoader.load(id);
 };
 
 export const userResolver = {

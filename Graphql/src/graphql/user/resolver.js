@@ -1,8 +1,5 @@
-export const user = async (_, { id }, { getUser }) =>
-  await (await getUser(id)).json();
+export const user = async (_, { id }, { dataSources }) =>
+  dataSources.userApi.getUser(id);
 
-export const users = async (_, { input }, { getUsers }) => {
-  const filters = new URLSearchParams(input).toString();
-  const data = await (await getUsers(`?${filters}`)).json();
-  return data;
-};
+export const users = async (_, { input }, { dataSources }) =>
+  dataSources.userApi.getUsers(input);

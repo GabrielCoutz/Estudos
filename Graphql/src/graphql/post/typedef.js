@@ -17,8 +17,8 @@ export const postTypeDef = gql`
   }
 `;
 
-export const user = async ({ userId }, _, { userDataLoader }) => {
-  return userDataLoader.load(userId);
+export const user = async ({ userId }, _, { dataSources }) => {
+  return dataSources.userApi.dataLoader.load(userId);
 };
 
 export const postResolver = {
