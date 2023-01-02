@@ -12,8 +12,41 @@
 
 <body>
   <div id="app">
+
+    <header class="header">
+      <img class="logo" src="./assets/techno.svg" alt="techno">
+      <div class="carrinho-menu">
+        {{totalCart}} |
+      </div>
+    </header>
+
+    <section class="modal" v-if="product" @click="closeModal">
+      <div class="modal-container">
+        <div class="modal-img">
+          <img :src="product.img" :alt="product.nome">
+        </div>
+        <div class="modal-dados">
+          <button class="modal-fechar" @click="product = false">X</button>
+          <span class="modal-preco">{{product.preco | numberToCurrency}}</span>
+          <h2 class="modal-titulo">{{product.nome}}</h2>
+          <p>{{product.descricao}}</p>
+          <button class="modal-btn" @click="addToCart" v-if="product.estoque">Adicionar item</button>
+          <button class="modal-btn esgotado" v-else disabled>Produto esgotado</button>
+        </div>
+        <div class="reviews">
+          <h2 class="reviews-subtitulo">
+            <ul class="">
+              <li v-for="avaliacao in product.reviews" class="avaliacao">
+                <p class="review-descricao">{{avaliacao.descricao}}</p>
+                <p class="review-usuario">{{avaliacao.nome}} | {{avaliacao.estrelas}}</p>
+              </li>
+            </ul>
+          </h2>
+        </div>
+      </div>
+    </section>
     <section class="produtos">
-      <div v-for="product in products" class="produto" :key="product.id">
+      <div v-for="product in products" class="produto" :key="product.id" @click="fetchProduct(product.id)">
         <img :src="product.img" :alt="product.nome" class="produto-img">
         <div class="produto-info">
           <span class="produto-preco">{{product.preco | numberToCurrency}}</span>

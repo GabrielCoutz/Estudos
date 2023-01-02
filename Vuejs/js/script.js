@@ -2,7 +2,9 @@ const options = {
   el: "#app",
   data: {
     products: [],
-    product: {},
+    product: false,
+    totalCart: 0,
+    cart: [],
   },
   methods: {
     async fetchProducts() {
@@ -10,7 +12,23 @@ const options = {
     },
 
     async fetchProduct(id) {
-      this.product = await (await fetch(`./api/${id}`)).json();
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      this.product = await (
+        await fetch(`./api/produtos/${id}/dados.json`)
+      ).json();
+    },
+
+    closeModal({ target, currentTarget }) {
+      if (target === currentTarget) this.product = false;
+    },
+
+    addToCart() {
+      this.product.estoque--;
+      this.cart.push(this.product);
+      this.totalCart = this.cart.length;
     },
   },
   filters: {

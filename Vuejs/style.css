@@ -164,13 +164,17 @@ body {
   font-family: "Noto Serif";
 }
 
-.modal-btn:active {
+.modal-btn:active:not(.esgotado) {
   background: #808080;
 }
 
 .modal-btn.esgotado {
   cursor: initial;
   opacity: 0.5;
+}
+
+.modal-btn.esgotado:hover {
+  cursor: not-allowed;
 }
 
 /* REVIEWS */
