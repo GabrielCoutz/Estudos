@@ -1,0 +1,20 @@
+{
+  "name": "stripe-sample",
+  "version": "0.0.0",
+  "description": "Full-stack example using Next.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@stripe/react-stripe-js": "1.4.1",
+    "@stripe/stripe-js": "1.15.1",
+    "micro": "latest",
+    "micro-cors": "latest",
+    "next": "latest",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "stripe": "^8.202.0"
+  }
+}
