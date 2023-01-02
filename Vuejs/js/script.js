@@ -4,6 +4,7 @@ const options = {
     products: [],
     product: false,
     cart: [],
+    activeCart: false,
     mensagemAlerta: "",
     alertaAtivo: false,
   },
@@ -58,6 +59,16 @@ const options = {
       const hash = document.location.hash.replace("#", "");
       if (hash) this.fetchProduct(hash);
     },
+
+    outsideClick({ target, currentTarget }) {
+      if (target === currentTarget) this.activeCart = false;
+    },
+
+    compareStock() {
+      const items = this.cart.filter(({ id }) => id === this.product.id);
+
+      this.product.estoque -= items.length;
+    },
   },
 
   watch: {
@@ -66,6 +77,7 @@ const options = {
     },
 
     product() {
+      if (this.product) this.compareStock();
       document.title = this.product.nome || "Techno";
       const hash = this.product.id || "";
       history.pushState(null, null, `#${hash}`);

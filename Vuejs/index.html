@@ -15,16 +15,8 @@
 
     <header class="header">
       <img class="logo" src="./assets/techno.svg" alt="techno">
-      <div class="carrinho-menu">
+      <div class="carrinho-menu" @click="activeCart = true">
         {{totalCart | numberToCurrency}} | {{cart.length}}
-        <ul>
-          <li v-for="item, index in cart" :key="item.id">
-            <p>
-              {{item.nome}} | {{item.preco | numberToCurrency}}
-            </p>
-            <button @click="removeItemFromCart(index)">X</button>
-          </li>
-        </ul>
       </div>
     </header>
 
@@ -41,12 +33,12 @@
           <button class="modal-btn" @click="addToCart" v-if="product.estoque">Adicionar item</button>
           <button class="modal-btn esgotado" v-else disabled>Produto esgotado</button>
         </div>
-        <div class="reviews">
-          <h2 class="reviews-subtitulo">
+        <div class="avaliacoes">
+          <h2 class="avaliacoes-subtitulo">
             <ul class="">
               <li v-for="avaliacao in product.reviews" class="avaliacao">
-                <p class="review-descricao">{{avaliacao.descricao}}</p>
-                <p class="review-usuario">{{avaliacao.nome}} | {{avaliacao.estrelas}}</p>
+                <p class="avaliacao-descricao">{{avaliacao.descricao}}</p>
+                <p class="avaliacao-usuario">{{avaliacao.nome}} | {{avaliacao.estrelas}}</p>
               </li>
             </ul>
           </h2>
@@ -66,6 +58,29 @@
     <div class="alerta" :class="{ativo: alertaAtivo}">
       <p class=" alerta-mensagem">{{mensagemAlerta}}</p>
     </div>
+
+    <section class="carrinho-modal" :class="{ativo: activeCart}" @click="outsideClick">
+      <div class="carrinho-container">
+        <button class="carrinho-fechar" @click="activeCart = false">X</button>
+        <h1 class="carrinho-titulo">Carrinho</h1>
+        <div v-if="cart.length">
+          <ul>
+            <li class="carrinho-item" v-for="item, index in cart" :key="item.id">
+              <p>
+                {{item.nome}}
+              </p>
+              <p class="carrinho-preco">
+                {{item.preco | numberToCurrency}}
+              </p>
+              <button class="carrinho-remover" @click="removeItemFromCart(index)">X</button>
+            </li>
+          </ul>
+          <p>Total: {{totalCart | numberToCurrency}}</p>
+          <button class="carrinho-finalizar">Finalizar compra</button>
+        </div>
+        <p v-else>Carrinho vazio</p>
+      </div>
+    </section>
 
   </div>
 </body>
