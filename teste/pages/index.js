@@ -9,9 +9,7 @@ const stripePromise = loadStripe(
 );
 
 async function teste() {
-  const stripe = require("stripe")(
-    "pk_live_51MFKzVL680ckXT2FyNmqybnTbDdvsXuJkhH0obdEicBI4slGyD99yFWR7YofgC0dYMqkcfqIYjst0udVMr8RiYoX00y8e4fAKG"
-  );
+  const stripe = require("stripe")(process.env.PK_KEY);
 
   const product = await stripe.products.search({
     query: "active:'true' AND metadata['categoria']:'Exclusivos'",
@@ -80,9 +78,7 @@ export default function PreviewPage({ data }) {
 }
 
 async function teste2(fileId) {
-  const stripe = require("stripe")(
-    "pk_live_51MFKzVL680ckXT2FyNmqybnTbDdvsXuJkhH0obdEicBI4slGyD99yFWR7YofgC0dYMqkcfqIYjst0udVMr8RiYoX00y8e4fAKG"
-  );
+  const stripe = require("stripe")(process.env.PK_KEY);
 
   const upload = await stripe.files.retrieve(`{{${fileId}}}`);
   return upload;
