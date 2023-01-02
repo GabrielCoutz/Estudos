@@ -3,7 +3,6 @@ const options = {
   data: {
     products: [],
     product: false,
-    totalCart: 0,
     cart: [],
   },
   methods: {
@@ -26,9 +25,30 @@ const options = {
     },
 
     addToCart() {
+      const { nome, preco, id } = this.product;
       this.product.estoque--;
-      this.cart.push(this.product);
-      this.totalCart = this.cart.length;
+
+      this.cart.push({ nome, preco, id });
+    },
+
+    removeItemFromCart(index) {
+      this.cart.splice(index, 1);
+    },
+
+    checkLocalStorage() {
+      const localCart = window.localStorage.getItem("cart");
+      console.log(localCart);
+      if (localCart) this.cart = JSON.parse(localCart);
+    },
+  },
+  watch: {
+    cart(value) {
+      window.localStorage.setItem("cart", JSON.stringify(value));
+    },
+  },
+  computed: {
+    totalCart() {
+      return this.cart.reduce((acc, { preco }) => acc + preco, 0);
     },
   },
   filters: {
@@ -41,6 +61,7 @@ const options = {
   },
   created() {
     this.fetchProducts();
+    this.checkLocalStorage();
   },
 };
 

@@ -16,7 +16,15 @@
     <header class="header">
       <img class="logo" src="./assets/techno.svg" alt="techno">
       <div class="carrinho-menu">
-        {{totalCart}} |
+        {{totalCart | numberToCurrency}} | {{cart.length}}
+        <ul>
+          <li v-for="item, index in cart" :key="item.id">
+            <p>
+              {{item.nome}} | {{item.preco | numberToCurrency}}
+            </p>
+            <button @click="removeItemFromCart(index)">X</button>
+          </li>
+        </ul>
       </div>
     </header>
 
