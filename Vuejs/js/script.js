@@ -1,27 +1,12 @@
-Vue.component("BotaoContador", {
-  data() {
-    return {
-      total: 0,
-    };
-  },
-  template: "<button @click='increaseTotal'>Total: {{total}}</button>",
-  methods: {
-    increaseTotal() {
-      this.total++;
-    },
-  },
-});
+import MarketValue from "./MarketValue.js";
+import Temperature from "./Temperature.js";
 
-const LocalComponent = {
-  name: "LocalComponent",
-  template: "<div>LocalComponent</div>",
-};
+Vue.component("Temperature", Temperature);
 
 const options = {
   el: "#app",
-  data: { mensagem: "xampson" },
   components: {
-    LocalComponent,
+    MarketValue,
   },
 };
 
