@@ -14,10 +14,12 @@
   "dependencies": {
     "apollo-datasource-rest": "^3.7.0",
     "apollo-server": "^3.11.1",
+    "bcrypt": "^5.1.0",
     "dataloader": "^2.1.0",
     "dotenv": "^16.0.3",
     "graphql": "^16.6.0",
-    "json-server": "^0.17.1"
+    "json-server": "^0.17.1",
+    "jsonwebtoken": "^9.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.20",

@@ -16,12 +16,14 @@ export const userTypeDef = gql`
   input CreateUserInput {
     firstName: String!
     lastName: String!
+    password: String!
   }
 
   input UpdateUserInput {
     firstName: String
     lastName: String
     userName: String
+    password: String
   }
 
   type User {

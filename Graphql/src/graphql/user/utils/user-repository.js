@@ -7,9 +7,9 @@ export async function createUserFn(data, dataSource) {
 }
 
 async function createUserInfo(data, dataSource) {
-  const { firstName, lastName } = data;
+  const { firstName, lastName, password } = data;
 
-  if (!firstName || !lastName)
+  if (!firstName || !lastName || !password)
     throw new ValidationError("You have to send firstName and lastName.");
 
   const indexRefUser = await dataSource.get("", {
