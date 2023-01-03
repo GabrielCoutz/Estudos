@@ -1,13 +1,9 @@
-import MarketValue from "./MarketValue.js";
-import Temperature from "./Temperature.js";
+import Simbols from "./Simbols.js";
 
-Vue.component("Temperature", Temperature);
+Vue.component("Simbols", Simbols);
 
 const options = {
   el: "#app",
-  components: {
-    MarketValue,
-  },
 };
 
 const vm = new Vue(options);
