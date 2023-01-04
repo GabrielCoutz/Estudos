@@ -1,25 +1,13 @@
 import React from "react";
 import { loadStripe } from "@stripe/stripe-js";
-import Image from "next/image";
+import Card from "../src/components/Card";
 
-// Make sure to call `loadStripe` outside of a component’s render to avoid
-// recreating the `Stripe` object on every render.
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 );
 
-async function teste() {
-  const stripe = require("stripe")(process.env.PK_KEY);
-
-  const product = await stripe.products.search({
-    query: "active:'true' AND metadata['categoria']:'Exclusivos'",
-  });
-
-  return product;
-}
-
-export default function PreviewPage({ data }) {
-  console.log(data);
+export default function PreviewPage({ data, teste }) {
+  console.log(data, teste);
   React.useEffect(() => {
     // Check to see if this is a redirect back from Checkout
     const query = new URLSearchParams(window.location.search);
@@ -35,61 +23,36 @@ export default function PreviewPage({ data }) {
   }, []);
 
   return (
-    <>
-      <div>
-        <Image src={data[0].images[0]} width={300} height={300} />
-      </div>
-      <form action="/api/checkout_sessions" method="POST">
-        <section>
-          <button type="submit" role="link">
-            Checkout
-          </button>
-        </section>
-        <style jsx>
-          {`
-            section {
-              background: #ffffff;
-              display: flex;
-              flex-direction: column;
-              width: 400px;
-              height: 112px;
-              border-radius: 6px;
-              justify-content: space-between;
-            }
-            button {
-              height: 36px;
-              background: #556cd6;
-              border-radius: 4px;
-              color: white;
-              border: 0;
-              font-weight: 600;
-              cursor: pointer;
-              transition: all 0.2s ease;
-              box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
-            }
-            button:hover {
-              opacity: 0.8;
-            }
-          `}
-        </style>
-      </form>
-    </>
+    <ul>
+      <Card data={data} />
+    </ul>
   );
 }
 
-async function teste2(fileId) {
+async function getAllProducts() {
   const stripe = require("stripe")(process.env.PK_KEY);
+  const product = await stripe.products.list();
+  return product;
+}
 
-  const upload = await stripe.files.retrieve(`{{${fileId}}}`);
-  return upload;
+async function getProductPrice(id) {
+  const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+  const product = await stripe.prices.retrieve(id);
+  return product;
 }
 
 export async function getServerSideProps() {
-  const { data } = await teste();
-
+  const { data } = await getAllProducts();
+  const teste = Promise.all(
+    await data.map(async (item) => ({
+      ...item,
+      price: await getProductPrice(item.default_price),
+    }))
+  );
   return {
     props: {
       data,
+      teste,
     },
   };
 }
