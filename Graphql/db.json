@@ -6,7 +6,8 @@
       "lastName": "Pereira",
       "userName": "elisa.pereira",
       "indexRef": 17,
-      "createdAt": "2017-02-15T11:29:40.799Z"
+      "createdAt": "2017-02-15T11:29:40.799Z",
+      "password": "teste"
     },
     {
       "id": "903",
@@ -159,6 +160,15 @@
       "userName": "marcia_carvalho81",
       "indexRef": 1,
       "createdAt": "2016-12-08T00:49:39.870Z"
+    },
+    {
+      "firstName": "Xampson1",
+      "lastName": "aaa",
+      "userName": "xampson1.aaa",
+      "indexRef": 21,
+      "createdAt": "2023-01-05T12:38:15.079Z",
+      "passwordHash": "$2b$12$IMXmdoO.oc9uHFvdVU.nRONY8GbDyAmSwao4Fz4PhfWkzpvQvL1Uy",
+      "id": "Vv1GH55"
     }
   ],
   "posts": [
