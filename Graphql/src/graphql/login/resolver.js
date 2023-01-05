@@ -1,6 +1,7 @@
 export const login = async (_, { data }, { dataSources }) => {
   const { userName, password } = data;
-  return dataSources.loginApi.login(userName, password);
+  const response = dataSources.loginApi.login(userName, password);
+  return response;
 };
 
 export const loginResolver = {

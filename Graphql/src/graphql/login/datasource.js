@@ -20,7 +20,8 @@ export class LoginApi extends RESTDataSource {
 
     if (!passwordValid) throw new AuthenticationError("Invalid password.");
 
-    const token = this.creatJwtToken({ userId });
+    const token = this.createJwtToken({ userId });
+    await this.patch(userId, { token }, { cacheOptions: { ttl: 0 } });
 
     return {
       userId,
@@ -32,7 +33,7 @@ export class LoginApi extends RESTDataSource {
     return bcrypt.compare(password, passwordHash);
   }
 
-  creatJwtToken(payload) {
+  createJwtToken(payload) {
     return jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: "7d",
     });
