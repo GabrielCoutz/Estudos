@@ -15,10 +15,8 @@ export const updateUser = async (
   { id, data },
   { dataSources, loggedUserId }
 ) => {
-  if (!loggedUserId) throw new AuthenticationError("You have to log in.");
-
-  if (loggedUserId !== id)
-    throw new AuthenticationError("You cannot update other user");
+  checkUserIsLogged(id);
+  checkOwner(id, loggedUserId);
 
   return dataSources.userApi.updateUser(id, data);
 };
