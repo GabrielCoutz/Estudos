@@ -29,12 +29,12 @@ export class PostsApi extends RESTDataSource {
     });
   }
 
-  async createPost(postData) {
-    return createPostFn(postData, this);
+  async createPost(postData, loggedUserId) {
+    return createPostFn(postData, loggedUserId, this);
   }
 
-  async updatePost(postId, postData) {
-    return updatePostFn(postId, postData, this);
+  async updatePost(postId, postData, loggedUserId) {
+    return updatePostFn(postId, postData, this, loggedUserId);
   }
 
   async deletePost(postId) {

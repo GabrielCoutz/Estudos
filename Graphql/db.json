@@ -164,12 +164,12 @@
     {
       "firstName": "mudado3",
       "lastName": "teste",
-      "userName": "teste",
+      "userName": "teste.teste2",
       "indexRef": 22,
       "createdAt": "2023-01-05T15:34:12.064Z",
       "passwordHash": "$2b$12$3KBbv6Pu3yy1WlosBnFmueNPfrHHeP.1uzQr5P55hd58oAqNwUzoS",
       "id": "ayNQ36e",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJheU5RMzZlIiwiaWF0IjoxNjcyOTU1MzA3LCJleHAiOjE2NzM1NjAxMDd9.sw4j9_2TvpSE1Qh5rx3-IGcsHEO5pePgbppp29DoXXI"
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJheU5RMzZlIiwiaWF0IjoxNjczMDE3NTQ0LCJleHAiOjE2NzM2MjIzNDR9.MCotPIF1Xbt42Z7RlImU9iLD60LifI2fpJibDoCKWoc"
     }
   ],
   "posts": [
@@ -366,12 +366,12 @@
       "createdAt": "2017-04-26T19:39:05.420Z"
     },
     {
-      "title": "UPDATED - title",
-      "body": "UPDATED - xampson",
-      "userId": "592",
+      "title": "title teste",
+      "body": "body teste",
+      "userId": "ayNQ36e",
       "indexRef": 25,
-      "createdAt": "2022-12-30T20:37:44.865Z",
-      "id": "on-vsAc"
+      "createdAt": "2023-01-06T14:46:09.463Z",
+      "id": "kHiocIQ"
     }
   ],
   "comments": [

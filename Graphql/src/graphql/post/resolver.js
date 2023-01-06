@@ -1,3 +1,5 @@
+import { AuthenticationError } from "apollo-server";
+
 export const post = async (_, { id }, { dataSources }) =>
   dataSources.postApi.getPost(id);
 
@@ -6,11 +8,28 @@ export const posts = async (_, { input }, { dataSources }) =>
 
 // Mutation resolver
 
-export const createPost = async (_, { data }, { dataSources }) =>
-  dataSources.postApi.createPost(data);
+export const createPost = async (
+  _,
+  { data },
+  { dataSources, loggedUserId }
+) => {
+  checkUserIsLogged(loggedUserId);
+  return dataSources.postApi.createPost(data, loggedUserId);
+};
 
-export const updatePost = async (_, { data, postId }, { dataSources }) =>
-  dataSources.postApi.updatePost(postId, data);
+export const updatePost = async (
+  _,
+  { data, postId },
+  { dataSources, loggedUserId }
+) => {
+  checkUserIsLogged(loggedUserId);
+  return dataSources.postApi.updatePost(postId, data, loggedUserId);
+};
 
-export const deletePost = async (_, { postId }, { dataSources }) =>
-  dataSources.postApi.deletePost(postId);
+export const deletePost = async (_, { postId }, { dataSources }) => {
+  return dataSources.postApi.deletePost(postId);
+};
+
+export function checkUserIsLogged(userId) {
+  if (!userId) throw new AuthenticationError("You have to log in.");
+}

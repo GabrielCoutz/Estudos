@@ -16,6 +16,7 @@ const server = new ApolloServer({
       loginApi: new LoginApi(),
     };
   },
+  introspection: true,
 });
 
 server.listen(4003);

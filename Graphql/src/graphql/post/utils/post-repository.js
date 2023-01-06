@@ -1,21 +1,29 @@
-import { ValidationError } from "apollo-server";
+import { ValidationError, AuthenticationError } from "apollo-server";
 
-export const createPostFn = async (postData, dataSource) => {
-  const postInfo = await createPostInfo(postData, dataSource);
-  const { title, body, userId } = postInfo;
+export const createPostFn = async (postData, loggedUserId, dataSource) => {
+  const postInfo = await createPostInfo(postData, loggedUserId, dataSource);
+  const { title, body } = postInfo;
 
-  if (!title || !body || !userId)
-    throw new ValidationError("You have to send title, body and userId.");
+  if (!title || !body)
+    throw new ValidationError("You have to send title and body.");
 
   return await dataSource.post("", { ...postInfo });
 };
 
-export const updatePostFn = async (postId, postData, dataSource) => {
-  if (!postId) throw new ValidationError("Misson postId");
+export const updatePostFn = async (
+  postId,
+  postData,
+  dataSource,
+  loggedUserId
+) => {
+  const { userId } = await dataSource.getPost(postId);
+  console.log(postData, postId);
+  if (userId !== loggedUserId)
+    throw new AuthenticationError("You cannot update posts from others users.");
 
-  if (postData?.userId) await userExists(postData.userId, dataSource);
+  await userExists(loggedUserId, dataSource);
 
-  return dataSource.patch(postId, { ...postData });
+  return await dataSource.patch(postId, { ...postData });
 };
 
 const userExists = async (userId, dataSource) => {
@@ -26,10 +34,10 @@ const userExists = async (userId, dataSource) => {
   }
 };
 
-export const createPostInfo = async (postData, dataSource) => {
-  const { title, body, userId } = postData;
+export const createPostInfo = async (postData, loggedUserId, dataSource) => {
+  await userExists(loggedUserId, dataSource);
 
-  await userExists(userId, dataSource);
+  const { title, body } = postData;
 
   const indexRefPost = await dataSource.get("", {
     _limit: 1,
@@ -41,7 +49,7 @@ export const createPostInfo = async (postData, dataSource) => {
   return {
     title,
     body,
-    userId,
+    userId: loggedUserId,
     indexRef,
     createdAt: new Date().toISOString(),
   };
