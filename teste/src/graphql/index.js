@@ -21,6 +21,20 @@ const stripePromise = loadStripe(process.env.STRIPE_SECRET_KEY);
 
 const client = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
+// async function xampson() {
+//   const { id } = await client.products.create({
+//     name: "Basic Dashboard",
+//   });
+//   const product = await client.prices.create({
+//     unit_amount: 1500,
+//     currency: "BRL",
+//     product: id,
+//   });
+//   console.log(product);
+// }
+
+// xampson();
+
 const typeDefs = [rootTypeDefs, productTypeDefs];
 const resolvers = [rootResolvers, productResolvers];
 

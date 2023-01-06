@@ -7,7 +7,8 @@ const productTypeDefs = gql`
   type Product {
     id: ID!
     name: String!
-    default_price: String!
+    priceId: String!
+    price: Float!
     images: [String!]!
     category: String!
   }
