@@ -3,8 +3,17 @@
     <div v-if="loading">
       <h1>Loading...</h1>
     </div>
-    <div v-else>
+    <div v-else class="container">
       <h1>Curso {{ curso }}</h1>
+      <span>{{ infoCurso.descricao }}</span>
+      <ul>
+        <li v-for="aula in infoCurso.aulas" :key="aula.id">
+          <router-link :to="{ name: 'aulas', params: { aula: aula.id } }">{{
+            aula.nome
+          }}</router-link>
+        </li>
+      </ul>
+      <router-view></router-view>
     </div>
   </div>
 </template>
@@ -15,20 +24,40 @@ export default {
   data() {
     return {
       loading: true,
+      infoCurso: null,
     };
   },
   methods: {
-    teste() {
+    async fetchData(curso) {
       this.loading = true;
-      console.log("xamopson");
+      this.infoCurso = await (
+        await fetch(`http://localhost:3000/curso/${curso}`)
+      ).json();
       this.loading = false;
     },
   },
-  beforeRouteUpdate(to, from, next) {
-    this.teste();
+  beforeRouteUpdate(to, _, next) {
+    this.fetchData(to.params.curso);
     next();
+  },
+  created() {
+    this.fetchData(this.$route.params.curso);
   },
 };
 </script>
 
-<style></style>
+<style>
+ul {
+  display: flex;
+  gap: 1rem;
+}
+
+li {
+  list-style: none;
+}
+
+.container {
+  display: grid;
+  gap: 2rem;
+}
+</style>

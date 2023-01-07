@@ -1,16 +1,18 @@
 <template>
-  <nav class="links-cursos">
-    <router-link :to="{ name: 'curso', params: { curso: 'javascript' } }">
-      javascript
-    </router-link>
-    <router-link :to="{ name: 'curso', params: { curso: 'html' } }">
-      html
-    </router-link>
-    <router-link :to="{ name: 'curso', params: { curso: 'css' } }">
-      css
-    </router-link>
-    <router-view></router-view>
-  </nav>
+  <div class="container">
+    <nav class="links-cursos">
+      <router-link :to="{ name: 'curso', params: { curso: 'javascript' } }">
+        javascript
+      </router-link>
+      <router-link :to="{ name: 'curso', params: { curso: 'html-e-css' } }">
+        html e css
+      </router-link>
+      <router-link :to="{ name: 'curso', params: { curso: 'ux-design' } }">
+        ux-design
+      </router-link>
+      <router-view></router-view>
+    </nav>
+  </div>
 </template>
 
 <script>
@@ -30,5 +32,9 @@ export default {};
   padding: 1rem;
   box-shadow: 0 0 10px rgb(192, 192, 192);
   color: black;
+}
+.container {
+  display: grid;
+  gap: 2rem;
 }
 </style>
