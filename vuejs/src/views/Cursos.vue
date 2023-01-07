@@ -1,9 +1,11 @@
 <template>
-  <h1>Cursos</h1>
+  <h1>Curso ativo: {{ curso }}</h1>
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["curso"],
+};
 </script>
 
 <style></style>
