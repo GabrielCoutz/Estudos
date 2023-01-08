@@ -5,6 +5,12 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    user: "xampson",
+    aulasCompletas: [],
+  },
+  mutations: {
+    completarAula(state, payload) {
+      if (!state.aulasCompletas.includes(payload))
+        state.aulasCompletas.push(payload);
+    },
   },
 });
