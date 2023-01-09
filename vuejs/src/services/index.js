@@ -6,8 +6,9 @@ const axiosInstance = axios.create({
 
 export const api = {
   async get(endpoint) {
-    const { data } = await axiosInstance.get(endpoint);
-    return data;
+    const { data, headers } = await axiosInstance.get(endpoint);
+    const totalItens = +headers["x-total-count"];
+    return { data, totalItens };
   },
 
   async post(endpoint, body) {

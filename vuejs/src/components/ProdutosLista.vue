@@ -1,12 +1,12 @@
 <template>
   <section class="produtos=container">
-    <div v-if="produtos.length" class="produtos">
-      <ul
-        v-for="{ fotos, nome, preco, descricao, id } in produtos"
-        :key="id"
-        class="produto"
-      >
-        <li>
+    <div v-if="produtos.length">
+      <ul class="produtos">
+        <li
+          v-for="({ fotos, nome, preco, descricao, id }, index) in produtos"
+          :key="id + index"
+          class="produto"
+        >
           <router-link to="/">
             <img v-if="fotos" :src="fotos[0]" :alt="nome" />
             <p class="preco">{{ preco }}</p>
@@ -15,6 +15,10 @@
           </router-link>
         </li>
       </ul>
+      <ProdutosPaginar
+        :produtosTotal="produtosTotal"
+        :produtosPorPagina="produtosPorPagina"
+      />
     </div>
     <div v-else-if="produtos && !produtos.length">
       <p class="sem-resultados">
@@ -27,19 +31,25 @@
 <script>
 import { api } from "@/services/index.js";
 import { serialize } from "@/helpers/index.js";
+import ProdutosPaginar from "@/components/ProdutosPaginar.vue";
 
 export default {
   data() {
     return {
       produtos: [],
-      produtosPorPagina: 10,
+      produtosPorPagina: 8,
+      produtosTotal: 0,
     };
   },
+
   methods: {
     async getProdutos() {
-      this.produtos = await api.get(this.url);
+      const response = await api.get(this.url);
+      this.produtos = response.data;
+      this.produtosTotal = response.totalItens;
     },
   },
+
   computed: {
     url() {
       const endpoint = "/produto";
@@ -49,13 +59,19 @@ export default {
       return endpoint + limit + query;
     },
   },
+
   created() {
     this.getProdutos();
   },
+
   watch: {
     url() {
       this.getProdutos();
     },
+  },
+
+  components: {
+    ProdutosPaginar,
   },
 };
 </script>
