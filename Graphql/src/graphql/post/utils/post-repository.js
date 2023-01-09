@@ -16,12 +16,15 @@ export const updatePostFn = async (
   dataSource,
   loggedUserId
 ) => {
-  const { userId } = await dataSource.getPost(postId);
-  console.log(postData, postId);
+  await userExists(loggedUserId, dataSource);
+
+  const { userId } = await dataSource.get(postId, undefined, {
+    cacheOptions: {
+      ttl: 0,
+    },
+  });
   if (userId !== loggedUserId)
     throw new AuthenticationError("You cannot update posts from others users.");
-
-  await userExists(loggedUserId, dataSource);
 
   return await dataSource.patch(postId, { ...postData });
 };
@@ -55,8 +58,18 @@ export const createPostInfo = async (postData, loggedUserId, dataSource) => {
   };
 };
 
-export const deletePostFn = async (postId, dataSource) => {
+export const deletePostFn = async (postId, dataSource, loggedUserId) => {
   if (!postId) throw new ValidationError("Missing postId");
+  await userExists(loggedUserId, dataSource);
+
+  const { userId } = await dataSource.get(postId, undefined, {
+    cacheOptions: {
+      ttl: 0,
+    },
+  });
+  if (userId !== loggedUserId)
+    throw new AuthenticationError("You cannot delete posts from others users.");
+
   const deleted = await dataSource.delete(postId);
   return !!deleted;
 };

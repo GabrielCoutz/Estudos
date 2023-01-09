@@ -26,8 +26,13 @@ export const updatePost = async (
   return dataSources.postApi.updatePost(postId, data, loggedUserId);
 };
 
-export const deletePost = async (_, { postId }, { dataSources }) => {
-  return dataSources.postApi.deletePost(postId);
+export const deletePost = async (
+  _,
+  { postId },
+  { dataSources, loggedUserId }
+) => {
+  checkUserIsLogged(loggedUserId);
+  return dataSources.postApi.deletePost(postId, loggedUserId);
 };
 
 export function checkUserIsLogged(userId) {

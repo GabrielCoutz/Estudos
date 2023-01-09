@@ -169,7 +169,7 @@
       "createdAt": "2023-01-05T15:34:12.064Z",
       "passwordHash": "$2b$12$3KBbv6Pu3yy1WlosBnFmueNPfrHHeP.1uzQr5P55hd58oAqNwUzoS",
       "id": "ayNQ36e",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJheU5RMzZlIiwiaWF0IjoxNjczMDE3NTQ0LCJleHAiOjE2NzM2MjIzNDR9.MCotPIF1Xbt42Z7RlImU9iLD60LifI2fpJibDoCKWoc"
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJheU5RMzZlIiwiaWF0IjoxNjczMjYzNTc5LCJleHAiOjE2NzM4NjgzNzl9.P7JvLoHFjTwSDsCFaUrvkcUgCW9I86cljUfytddFXmI"
     }
   ],
   "posts": [
@@ -366,8 +366,8 @@
       "createdAt": "2017-04-26T19:39:05.420Z"
     },
     {
-      "title": "title teste",
-      "body": "body teste",
+      "title": "titulo alterado",
+      "body": "dsaiodjas",
       "userId": "ayNQ36e",
       "indexRef": 25,
       "createdAt": "2023-01-06T14:46:09.463Z",

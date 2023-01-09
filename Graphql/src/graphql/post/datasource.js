@@ -1,5 +1,6 @@
 import { RESTDataSource } from "apollo-datasource-rest";
 import { postDataLoaderFactory } from "../post/dataloaders";
+import { checkUserIsLogged } from "./resolver";
 import {
   createPostFn,
   deletePostFn,
@@ -37,7 +38,7 @@ export class PostsApi extends RESTDataSource {
     return updatePostFn(postId, postData, this, loggedUserId);
   }
 
-  async deletePost(postId) {
-    return deletePostFn(postId, this);
+  async deletePost(postId, loggedUserId) {
+    return deletePostFn(postId, this, loggedUserId);
   }
 }

@@ -4,14 +4,14 @@
       <li v-for="{ nome, duracao } in aulas" :key="nome">
         <h2>{{ nome }}</h2>
         <span>{{ duracao }}</span>
-        <button @click="completarAula(nome)">Completar aula</button>
+        <button @click="showTeste(nome)">Completar aula</button>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapActions } from "vuex";
 export default {
   name: "aula",
   data() {
@@ -33,7 +33,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(["completarAula"]),
+    ...mapActions(["showTeste"]),
   },
 };
 </script>

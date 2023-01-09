@@ -13,4 +13,9 @@ export default new Vuex.Store({
         state.aulasCompletas.push(payload);
     },
   },
+  actions: {
+    showTeste(context, payload) {
+      context.commit("completarAula", payload);
+    },
+  },
 });
