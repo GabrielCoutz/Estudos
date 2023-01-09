@@ -1,0 +1,45 @@
+@import "./variables.scss";
+
+$large-device: 1100px;
+$medium-device: 768px;
+$small-device: 500px;
+
+@mixin device($size) {
+  @if $size == "large" {
+    @media screen and (min-width: #{$large-device}) {
+      @content;
+    }
+  }
+
+  @if $size == "medium" {
+    @media screen and (min-width: #{$medium-device}) and (max-width: #{$large-device}) {
+      @content;
+    }
+  }
+
+  @if $size == "small" {
+    @media screen and (max-width: #{$medium-device}) {
+      @content;
+    }
+  }
+}
+
+@mixin large-text {
+  font: 400 3rem/4rem $fontPrimary;
+}
+
+@mixin medium-text {
+  font: 400 2rem/1.5rem $fontPrimary;
+}
+
+@mixin small-text {
+  font: 400 1rem/1.5rem $fontPrimary;
+}
+
+@mixin box-shadow1 {
+  box-shadow: -8px 8px 0px -5px $black;
+}
+
+@mixin box-shadow2 {
+  box-shadow: -2px 2px 0px #ffffff, -3px 3px 0px $black;
+}

@@ -31,6 +31,24 @@ export default {
   flex: 1;
 }
 
+.v-enter,
+.v-enter-to {
+  opacity: 0;
+}
+
+.v-enter {
+  transform: translate3d(0, -20px, 0);
+}
+
+.v-leave-to {
+  transform: translate3d(0, 20px, 0);
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.3s;
+}
+
 * {
   margin: 0;
   padding: 0;

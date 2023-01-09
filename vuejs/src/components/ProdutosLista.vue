@@ -1,30 +1,35 @@
 <template>
-  <section class="produtos=container">
-    <div v-if="produtos.length">
-      <ul class="produtos">
-        <li
-          v-for="({ fotos, nome, preco, descricao, id }, index) in produtos"
-          :key="id + index"
-          class="produto"
-        >
-          <router-link to="/">
-            <img v-if="fotos" :src="fotos[0]" :alt="nome" />
-            <p class="preco">{{ preco }}</p>
-            <h1 class="titulo">{{ nome }}</h1>
-            <p>{{ descricao }}</p>
-          </router-link>
-        </li>
-      </ul>
-      <ProdutosPaginar
-        :produtosTotal="produtosTotal"
-        :produtosPorPagina="produtosPorPagina"
-      />
-    </div>
-    <div v-else-if="produtos && !produtos.length">
-      <p class="sem-resultados">
-        Busca sem resultados. Tente buscar com outro termo.
-      </p>
-    </div>
+  <section class="produtos-container">
+    <transition mode="out-in">
+      <div v-if="produtos && produtos.length" key="produtos">
+        <ul class="produtos">
+          <li
+            v-for="({ fotos, nome, preco, descricao, id }, index) in produtos"
+            :key="id + index"
+            class="produto"
+          >
+            <router-link to="/">
+              <img v-if="fotos" :src="fotos[0]" :alt="nome" />
+              <p class="preco">{{ preco }}</p>
+              <h1 class="titulo">{{ nome }}</h1>
+              <p>{{ descricao }}</p>
+            </router-link>
+          </li>
+        </ul>
+        <ProdutosPaginar
+          :produtosTotal="produtosTotal"
+          :produtosPorPagina="produtosPorPagina"
+        />
+      </div>
+      <div v-else-if="produtos && produtos.length === 0" key="sem-resultados">
+        <p class="sem-resultados">
+          Busca sem resultados. Tente buscar com outro termo.
+        </p>
+      </div>
+      <div key="carregando" v-else>
+        <PaginaCarregando />
+      </div>
+    </transition>
   </section>
 </template>
 
@@ -36,7 +41,7 @@ import ProdutosPaginar from "@/components/ProdutosPaginar.vue";
 export default {
   data() {
     return {
-      produtos: [],
+      produtos: null,
       produtosPorPagina: 8,
       produtosTotal: 0,
     };
@@ -44,9 +49,12 @@ export default {
 
   methods: {
     async getProdutos() {
-      const response = await api.get(this.url);
-      this.produtos = response.data;
-      this.produtosTotal = response.totalItens;
+      this.produtos = null;
+      setTimeout(async () => {
+        const response = await api.get(this.url);
+        this.produtos = response.data;
+        this.produtosTotal = response.totalItens;
+      }, 1000);
     },
   },
 
@@ -77,6 +85,7 @@ export default {
 </script>
 
 <style>
+
 .produtos-container {
   max-width: 1000px;
   margin: 0 auto;
