@@ -1,30 +1,8 @@
 <template>
   <div id="app">
-    <div>
-      <NavBar />
-      <Curso />
-      <Aluno />
-    </div>
+    <h1>xampson</h1>
   </div>
 </template>
-
-<script>
-import NavBar from "./components/NavBar.vue";
-import Curso from "./components/Curso.vue";
-import Aluno from "./components/Aluno.vue";
-
-export default {
-  name: "App",
-  components: {
-    NavBar,
-    Curso,
-    Aluno,
-  },
-  data() {
-    return {};
-  },
-};
-</script>
 
 <style>
 * {
@@ -33,11 +11,16 @@ export default {
   box-sizing: border-box;
 }
 
+li {
+  list-style: none;
+}
+
 a {
   text-decoration: none;
 }
 
-li {
-  list-style: none;
+img {
+  width: 100%;
+  object-fit: cover;
 }
 </style>
