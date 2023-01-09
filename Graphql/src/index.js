@@ -17,6 +17,7 @@ const server = new ApolloServer({
     };
   },
   introspection: true,
+  uploads: false,
 });
 
 server.listen(4003);

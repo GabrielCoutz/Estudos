@@ -15,7 +15,6 @@ export const updateUser = async (
   { id, data },
   { dataSources, loggedUserId }
 ) => {
-  checkUserIsLogged(id);
   checkOwner(id, loggedUserId);
 
   return dataSources.userApi.updateUser(id, data);

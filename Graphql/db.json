@@ -163,13 +163,13 @@
     },
     {
       "firstName": "mudado3",
-      "lastName": "teste",
+      "lastName": "alterado2",
       "userName": "teste.teste2",
       "indexRef": 22,
       "createdAt": "2023-01-05T15:34:12.064Z",
       "passwordHash": "$2b$12$3KBbv6Pu3yy1WlosBnFmueNPfrHHeP.1uzQr5P55hd58oAqNwUzoS",
       "id": "ayNQ36e",
-      "token": ""
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJheU5RMzZlIiwiaWF0IjoxNjczMjc2MTA5LCJleHAiOjE2NzM4ODA5MDl9.vEYXePluDsOvylPaPhPKZPzykxhmnYXacPeDcLHXj6Y"
     }
   ],
   "posts": [

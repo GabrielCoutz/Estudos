@@ -10,7 +10,13 @@ export class LoginApi extends RESTDataSource {
   }
 
   async login(userName, password) {
-    const user = await this.get("", { userName }, { cacheOptions: { ttl: 0 } });
+    const user = await this.get(
+      "",
+      { userName },
+      {
+        cacheOptions: { ttl: 0 },
+      }
+    );
     const userExist = !!user.length;
 
     if (!userExist) throw new AuthenticationError("User does not exist.");
@@ -22,6 +28,14 @@ export class LoginApi extends RESTDataSource {
 
     const token = this.createJwtToken({ userId });
     await this.patch(userId, { token }, { cacheOptions: { ttl: 0 } });
+
+    // this.context.res.cookie("jwtToken", token, {
+    //   secure: false,
+    //   httpOnly: true,
+    //   maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
+    //   path: "/",
+    //   sameSite: "none",
+    // });
 
     return {
       userId,
@@ -39,6 +53,7 @@ export class LoginApi extends RESTDataSource {
       throw new AuthenticationError("You are not this user");
 
     await this.patch(user[0].id, { token: "" }, { cacheOptions: { ttl: 0 } });
+    this.context.res.clearCookie("jwtToken");
     return true;
   }
 
