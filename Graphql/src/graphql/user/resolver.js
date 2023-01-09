@@ -28,7 +28,7 @@ export const deleteUser = async (_, { id }, { dataSources, loggedUserId }) => {
   return dataSources.userApi.deleteUser(id);
 };
 
-function checkOwner(userId, loggedUserId) {
+export function checkOwner(userId, loggedUserId) {
   if (loggedUserId !== userId)
     throw new AuthenticationError("You cannot update other user");
 }

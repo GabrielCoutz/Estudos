@@ -29,6 +29,19 @@ export class LoginApi extends RESTDataSource {
     };
   }
 
+  async logout(userName) {
+    const user = await this.get("", { userName }, { cacheOptions: { ttl: 0 } });
+    const userExist = !!user.length;
+
+    if (!userExist) throw new AuthenticationError("User does not exist.");
+
+    if (user[0].id !== this.context.loggedUserId)
+      throw new AuthenticationError("You are not this user");
+
+    await this.patch(user[0].id, { token: "" }, { cacheOptions: { ttl: 0 } });
+    return true;
+  }
+
   async checkUserPassword(password, passwordHash) {
     return bcrypt.compare(password, passwordHash);
   }

@@ -169,7 +169,7 @@
       "createdAt": "2023-01-05T15:34:12.064Z",
       "passwordHash": "$2b$12$3KBbv6Pu3yy1WlosBnFmueNPfrHHeP.1uzQr5P55hd58oAqNwUzoS",
       "id": "ayNQ36e",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJheU5RMzZlIiwiaWF0IjoxNjczMjYzNTc5LCJleHAiOjE2NzM4NjgzNzl9.P7JvLoHFjTwSDsCFaUrvkcUgCW9I86cljUfytddFXmI"
+      "token": ""
     }
   ],
   "posts": [
