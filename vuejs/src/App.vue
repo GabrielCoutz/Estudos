@@ -69,6 +69,13 @@ li {
 a {
   text-decoration: none;
   color: #345;
+  transition: 0.3s all;
+}
+
+a.router-link-exact-active,
+a:hover {
+  background-color: #87f !important;
+  color: white;
 }
 
 img {
