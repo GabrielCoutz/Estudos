@@ -8,9 +8,9 @@
             :key="id + index"
             class="produto"
           >
-            <router-link to="/">
+            <router-link :to="{ name: 'Produto', params: { id } }">
               <img v-if="fotos" :src="fotos[0]" :alt="nome" />
-              <p class="preco">{{ preco }}</p>
+              <p class="preco">{{ preco | numeroPreco }}</p>
               <h1 class="titulo">{{ nome }}</h1>
               <p>{{ descricao }}</p>
             </router-link>
@@ -85,7 +85,6 @@ export default {
 </script>
 
 <style>
-
 .produtos-container {
   max-width: 1000px;
   margin: 0 auto;

@@ -4,13 +4,25 @@
       <router-link to="/" class="logo">
         <img src="@/assets/ranek.svg" alt="Rakek" />
       </router-link>
-      <router-link to="/login" class="btn"> Vender / Login </router-link>
+      <router-link v-if="logado" :to="{ name: 'Usuario' }" class="btn">{{
+        nome
+      }}</router-link>
+      <router-link to="/login" class="btn" v-else> Vender / Login </router-link>
     </nav>
   </header>
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    nome() {
+      return this.$store.state.user.nome.split(" ")[0];
+    },
+    logado() {
+      return this.$store.state.login;
+    },
+  },
+};
 </script>
 
 <style scoped>
