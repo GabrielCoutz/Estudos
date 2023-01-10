@@ -1,0 +1,49 @@
+@import "./mixins.scss";
+
+.intro {
+  display: grid;
+  justify-content: center;
+  gap: 3rem 0;
+  margin: 5rem auto;
+}
+
+.intro h1 {
+  font: 400 5rem/5rem $fontPrimary;
+}
+
+.searchBox {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  position: relative;
+  min-width: 430px;
+  justify-self: center;
+
+  svg {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+    path {
+      stroke: $black;
+    }
+  }
+
+  input {
+    min-height: 32px;
+    border: 1px solid $black;
+    @include box-shadow2;
+    @include small-text;
+    z-index: 1;
+    padding: 0 12px;
+    padding-left: 44px;
+  }
+
+  button {
+    padding: 16px;
+    background-color: $blue;
+    color: $white;
+    border: none;
+    cursor: pointer;
+    @include box-shadow1;
+  }
+}
