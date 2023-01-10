@@ -10,6 +10,30 @@
       "numero": "25",
       "estado": "RJ",
       "cidade": "Rio de Janeiro"
+    },
+    {
+      "id": "xampson@gmail.com",
+      "nome": "xampson",
+      "email": "xampson@gmail.com",
+      "senha": "xampson",
+      "cep": "08588310",
+      "rua": "Estrada da Promissão",
+      "numero": "111",
+      "cidade": "Itaquaquecetuba",
+      "estado": "SP",
+      "bairro": "Jardim Carolina"
+    },
+    {
+      "id": "teste@gmail.com",
+      "nome": "teste",
+      "email": "teste@gmail.com",
+      "senha": "teste",
+      "cep": "08588310",
+      "rua": "Estrada da Promissão",
+      "numero": "555",
+      "cidade": "Itaquaquecetuba",
+      "estado": "SP",
+      "bairro": "teste"
     }
   ],
   "produto": [
@@ -40,7 +64,6 @@
       "descricao": "Esse é um novo tablet.",
       "fotos": null
     },
-
     {
       "id": "smartphosdadsne",
       "nome": "Smartphone",
@@ -59,7 +82,6 @@
       "descricao": "Esse é um novo tablet.",
       "fotos": null
     },
-
     {
       "id": "smartdsadsphone",
       "nome": "Smartphone",
@@ -78,7 +100,6 @@
       "descricao": "Esse é um novo tablet.",
       "fotos": null
     },
-
     {
       "id": "smartasasdphone",
       "nome": "Smartphone",
@@ -889,7 +910,6 @@
       "descricao": "Esse é um novo tablet.",
       "fotos": null
     },
-
     {
       "id": "cN-dC33"
     }

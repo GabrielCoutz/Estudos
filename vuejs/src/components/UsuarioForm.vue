@@ -28,7 +28,16 @@
     />
 
     <label for="cep">CEP</label>
-    <input type="number" id="cep" name="cep" v-model="cep" />
+    <input
+      type="number"
+      id="cep"
+      name="cep"
+      v-model="cep"
+      @keyup="preencherCep"
+    />
+
+    <label for="numero">Numero</label>
+    <input type="number" id="numero" name="numero" v-model="numero" />
 
     <label for="rua">Rua</label>
     <input type="text" id="rua" name="rua" v-model="rua" />
@@ -50,16 +59,16 @@
 
 <script>
 import { mapFields } from "@/helpers/index.js";
-
+import { getCep } from "@/services/index.js";
 export default {
   computed: {
     ...mapFields({
       fields: [
         "nome",
         "email",
-        "rua",
-        "cep",
         "senha",
+        "cep",
+        "rua",
         "numero",
         "bairro",
         "cidade",
@@ -68,6 +77,19 @@ export default {
       base: "user",
       mutation: "UPDATE_USUARIO",
     }),
+  },
+  methods: {
+    async preencherCep() {
+      const cep = this.cep;
+      if (cep.length === 8) {
+        const { data } = await getCep(cep);
+
+        this.rua = data.logradouro;
+        this.estado = data.uf;
+        this.cidade = data.localidade;
+        this.bairro = data.bairro;
+      }
+    },
   },
 };
 </script>

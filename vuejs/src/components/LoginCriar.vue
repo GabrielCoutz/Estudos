@@ -6,7 +6,9 @@
         Criar conta
       </button>
       <UsuarioForm v-else>
-        <button class="btn btn-form">Criar usuário</button>
+        <button class="btn btn-form" @click="criarUsuario">
+          Criar usuário
+        </button>
       </UsuarioForm>
     </transition>
   </section>
@@ -24,6 +26,13 @@ export default {
     return {
       criar: false,
     };
+  },
+  methods: {
+    async criarUsuario() {
+      await this.$store.dispatch("criarUsuario", this.$store.state.user);
+      await this.$store.dispatch("getUsuario", this.$store.state.user.email);
+      this.$router.push({ name: "Usuario" });
+    },
   },
 };
 </script>
