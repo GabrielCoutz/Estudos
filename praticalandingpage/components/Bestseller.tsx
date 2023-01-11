@@ -1,7 +1,33 @@
 import React from "react";
-import Heart from "../assets/Heart";
-import ShoppingBag from "../assets/ShoppingBag";
 import styles from "../styles/Bestseller.module.scss";
+import Card from "./Card";
+
+const bestSellers = [
+  {
+    id: 1,
+    title: "The Botanist",
+    author: "M. W. Craven",
+    price: "$ 14.00",
+  },
+  {
+    id: 2,
+    title: "The Complete Sherlock...",
+    author: "Sir Arthur Conan Doyle",
+    price: "$ 12.00",
+  },
+  {
+    id: 3,
+    title: "Harry Potter and the ...",
+    author: "Dana Chambers",
+    price: "$ 18.00",
+  },
+  {
+    id: 4,
+    title: "Holy Waters Searching ...",
+    author: "Tom Morton",
+    price: "$ 15.12",
+  },
+];
 
 const Bestseller = () => {
   return (
@@ -11,54 +37,9 @@ const Bestseller = () => {
         <span>See all</span>
       </div>
       <ul className={styles.cards}>
-        <li className={styles.card}>
-          <div className={styles.wrapperImage}>
-            <div className={styles.image}></div>
-          </div>
-          <h3 className={styles.title}>The Botanist</h3>
-          <span className={styles.author}>M. W. Craven</span>
-          <span className={styles.price}>$ 14.00</span>
-          <div className={styles.buttons}>
-            <ShoppingBag />
-            <Heart />
-          </div>
-        </li>
-        <li className={styles.card}>
-          <div className={styles.wrapperImage}>
-            <div className={styles.image}></div>
-          </div>
-          <h3 className={styles.title}>The Complete Sherlock...</h3>
-          <span className={styles.author}>Sir Arthur Conan Doyle</span>
-          <span className={styles.price}>$ 12.00</span>
-          <div className={styles.buttons}>
-            <ShoppingBag />
-            <Heart />
-          </div>
-        </li>
-        <li className={styles.card}>
-          <div className={styles.wrapperImage}>
-            <div className={styles.image}></div>
-          </div>
-          <h3 className={styles.title}>Harry Potter and the ...</h3>
-          <span className={styles.author}>Dana Chambers</span>
-          <span className={styles.price}>$ 18.00</span>
-          <div className={styles.buttons}>
-            <ShoppingBag />
-            <Heart />
-          </div>
-        </li>
-        <li className={styles.card}>
-          <div className={styles.wrapperImage}>
-            <div className={styles.image}></div>
-          </div>
-          <h3 className={styles.title}>Holy Waters Searching ...</h3>
-          <span className={styles.author}>Tom Morton</span>
-          <span className={styles.price}>$ 15.12</span>
-          <div className={styles.buttons}>
-            <ShoppingBag />
-            <Heart />
-          </div>
-        </li>
+        {bestSellers.map(({ id, title, author, price }) => (
+          <Card author={author} price={price} title={title} key={id} />
+        ))}
       </ul>
     </section>
   );

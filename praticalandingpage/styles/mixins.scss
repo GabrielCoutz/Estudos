@@ -43,3 +43,20 @@ $small-device: 500px;
 @mixin box-shadow2 {
   box-shadow: -2px 2px 0px #ffffff, -3px 3px 0px $black;
 }
+
+@mixin imageStyle($wrapperImage, $image) {
+  #{$wrapperImage} {
+    padding: 20px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid $black;
+    position: relative;
+
+    #{$image} {
+      min-height: 300px;
+      min-width: 200px;
+      background-color: $purple;
+    }
+  }
+}
