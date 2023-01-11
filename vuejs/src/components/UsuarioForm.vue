@@ -1,32 +1,33 @@
 <template>
   <form @submit.prevent>
-    <label for="nome">Nome</label>
-    <input
-      type="text"
-      id="nome"
-      name="nome"
-      v-model="nome"
-      autocomplete="username"
-    />
+    <div v-if="mostrarDadosLogin" class="usuiario">
+      <label for="nome">Nome</label>
+      <input
+        type="text"
+        id="nome"
+        name="nome"
+        v-model="nome"
+        autocomplete="username"
+      />
 
-    <label for="email">Email</label>
-    <input
-      type="email"
-      id="email"
-      name="email"
-      v-model="email"
-      autocomplete="email"
-    />
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        v-model="email"
+        autocomplete="email"
+      />
 
-    <label for="senha">Senha</label>
-    <input
-      type="password"
-      id="senha"
-      name="senha"
-      v-model="senha"
-      autocomplete="current-password"
-    />
-
+      <label for="senha">Senha</label>
+      <input
+        type="password"
+        id="senha"
+        name="senha"
+        v-model="senha"
+        autocomplete="current-password"
+      />
+    </div>
     <label for="cep">CEP</label>
     <input
       type="number"
@@ -77,6 +78,9 @@ export default {
       base: "user",
       mutation: "UPDATE_USUARIO",
     }),
+    mostrarDadosLogin() {
+      return !this.$store.state.login || this.$route.name === "usuarioEditar";
+    },
   },
   methods: {
     async preencherCep() {
@@ -95,10 +99,15 @@ export default {
 </script>
 
 <style scoped>
-form {
+form,
+.usuario {
   display: grid;
   grid-template-columns: 80px 1fr;
   align-items: center;
+}
+
+.usuario {
+  grid-column: 1/3;
 }
 
 button {

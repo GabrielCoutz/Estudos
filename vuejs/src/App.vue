@@ -72,11 +72,6 @@ a {
   transition: 0.3s all;
 }
 
-a.router-link-exact-active {
-  background-color: #87f !important;
-  color: white;
-}
-
 img {
   max-width: 100%;
   display: block;

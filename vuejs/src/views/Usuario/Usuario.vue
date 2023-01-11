@@ -68,4 +68,9 @@ button:hover {
   background-color: #87f !important;
   color: white;
 }
+
+a.router-link-exact-active {
+  background: #87f;
+  color: white;
+}
 </style>

@@ -1,9 +1,61 @@
 <template>
-  <h1>adicionar</h1>
+  <form class="adicionarProduto" @submit.prevent>
+    <label for="nome">Nome do produto</label>
+    <input type="text" id="nome" name="nome" v-model="produto.nome" />
+
+    <label for="preco">Preço (R$)</label>
+    <input type="number" id="preco" name="preco" v-model="produto.preco" />
+
+    <label for="fotos">Fotos</label>
+    <input type="file" id="fotos" name="fotos" ref="fotos" />
+
+    <label for="descricao">Descrição</label>
+    <textarea id="descricao" name="descricao" v-model="produto.descricao" />
+
+    <button @click="adicionarProduto" class="btn">Adicionar produto</button>
+  </form>
 </template>
 
 <script>
-export default {};
+import { api } from "@/services/index.js";
+
+export default {
+  name: "ProdutoAdicionar",
+  data() {
+    return {
+      produto: {
+        nome: "",
+        preco: "",
+        descricao: "",
+        fotos: null,
+        vendido: "false",
+      },
+    };
+  },
+
+  methods: {
+    formatarProduto() {
+      this.produto.usuario_id = this.$store.state.user.id;
+    },
+
+    async adicionarProduto() {
+      this.formatarProduto();
+      await api.post("/produto", this.produto);
+      this.$store.dispatch("getUsuarioProdutos");
+    },
+  },
+};
 </script>
 
-<style></style>
+<style scoped>
+.adicionarProduto {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.btn {
+  grid-column: 2;
+}
+</style>

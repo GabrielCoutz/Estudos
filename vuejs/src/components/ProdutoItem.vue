@@ -41,4 +41,8 @@ export default {
   overflow: hidden;
   height: 100px;
 }
+
+.produto:hover {
+  transform: none;
+}
 </style>
