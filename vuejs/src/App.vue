@@ -72,8 +72,7 @@ a {
   transition: 0.3s all;
 }
 
-a.router-link-exact-active,
-a:hover {
+a.router-link-exact-active {
   background-color: #87f !important;
   color: white;
 }
