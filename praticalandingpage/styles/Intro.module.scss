@@ -47,3 +47,47 @@
     @include box-shadow1;
   }
 }
+
+.faixaWrapper {
+  background-color: $blue;
+  @include large-text;
+  position: relative;
+  margin-top: 120px;
+}
+
+.faixaBg {
+  content: "";
+  width: calc(100vw - 5px);
+  background-color: $blue;
+  opacity: 0.5;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
+  transform: rotate(3deg);
+  display: inline-block;
+}
+
+.faixa {
+  display: flex;
+  gap: 3rem;
+  overflow: hidden;
+  justify-content: center;
+
+  span {
+    white-space: nowrap;
+    color: $white;
+  }
+
+  span::before {
+    position: relative;
+    top: 8px;
+    right: 20px;
+  }
+
+  span:nth-child(even)::before {
+    content: url("../assets/Star.svg");
+  }
+  span:nth-child(odd)::before {
+    content: url("../assets/Star2.svg");
+  }
+}
