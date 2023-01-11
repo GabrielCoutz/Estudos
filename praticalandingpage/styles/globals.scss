@@ -1,4 +1,5 @@
 @import "./variables.scss";
+@import "./mixins.scss";
 
 a {
   text-decoration: none;
@@ -17,4 +18,18 @@ li {
 .container {
   max-width: $max-width;
   margin: 0 auto;
+}
+
+.sectionName {
+  border-top: 2px solid $black;
+  border-bottom: 2px solid $black;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  h1 {
+    @include medium-text;
+  }
+  span {
+    @include small-text;
+  }
 }
