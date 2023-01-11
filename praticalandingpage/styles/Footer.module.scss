@@ -1,0 +1,77 @@
+@import "./mixins.scss";
+
+.footer {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 3rem;
+  margin: 5rem auto;
+}
+
+.interprise {
+  h1 {
+    @include large-text;
+    text-transform: uppercase;
+  }
+  .detalhe {
+    color: $blue;
+  }
+}
+
+.searchBox {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  position: relative;
+  min-width: 430px;
+  justify-self: center;
+
+  svg {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+    path {
+      stroke: $black;
+    }
+  }
+
+  input {
+    min-height: 32px;
+    border: 1px solid $black;
+    @include box-shadow2;
+    @include small-text;
+    z-index: 1;
+    padding: 0 12px;
+    padding-left: 44px;
+  }
+
+  button {
+    padding: 16px;
+    background-color: $blue;
+    color: $white;
+    border: none;
+    cursor: pointer;
+    @include box-shadow1;
+  }
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  h1 {
+    font-size: 1rem;
+    color: rgb(41, 41, 41);
+  }
+
+  li {
+    font-size: 0.9rem;
+    color: rgb(110, 110, 110);
+  }
+}

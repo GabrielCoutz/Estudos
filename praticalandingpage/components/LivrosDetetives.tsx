@@ -31,8 +31,8 @@ const detectiveBooks = [
 
 const LivrosDetetives = () => {
   return (
-    <section className="container">
-      <div className={`${styles.detectiveBooks} sectionName`}>
+    <section className={`${styles.detectiveBooks} container`}>
+      <div className="sectionName">
         <h1>Detective books</h1>
         <span>See all</span>
       </div>
