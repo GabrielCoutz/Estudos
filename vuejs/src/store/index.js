@@ -43,8 +43,8 @@ export default new Vuex.Store({
       context.commit("UPDATE_USUARIO_PRODUTOS", data);
     },
 
-    async getUsuario(context, payload) {
-      const { data } = await api.get(`/usuario/${payload}`);
+    async getUsuario(context) {
+      const { data } = await api.get(`/usuario`);
       context.commit("UPDATE_USUARIO", data);
       context.commit("UPDATE_LOGIN", true);
       return data;
@@ -68,6 +68,15 @@ export default new Vuex.Store({
         estado: "",
       });
       context.commit("UPDATE_LOGIN", false);
+    },
+
+    async logarUsuario(context, payload) {
+      const response = await api.login({
+        username: payload.email,
+        password: payload.senha,
+      });
+      const { token } = response.data;
+      localStorage.setItem("token", `Bearer ${token}`);
     },
   },
 });

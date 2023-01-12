@@ -1,8 +1,21 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://restapi.local/wp-json/api",
 });
+
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      config.headers.Authorization = token;
+      config.headers["Access-Control-Allow-Origin"] = "http://localhost:8080";
+      config.headers["Access-Control-Allow-Headers"] = "X-Custom-Header";
+    }
+    return config;
+  },
+  (erro) => Promise.reject(erro)
+);
 
 export const api = {
   async get(endpoint) {
@@ -22,6 +35,17 @@ export const api = {
 
   async put(endpoint, body) {
     return axiosInstance.put(endpoint, body);
+  },
+
+  async login(body) {
+    return axios.post("https://restapi.local/wp-json/jwt-auth/v1/token", body);
+  },
+
+  async validateToken(body) {
+    return axios.post(
+      "https://restapi.local/wp-json/jwt-auth/v1/token/validate",
+      body
+    );
   },
 };
 

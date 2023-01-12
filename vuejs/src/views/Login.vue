@@ -44,9 +44,9 @@ export default {
   },
 
   methods: {
-    logar() {
-      this.$store.commit("UPDATE_LOGIN", true);
-      this.$store.dispatch("getUsuario", this.login.email);
+    async logar() {
+      await this.$store.dispatch("logarUsuario", this.login);
+      await this.$store.dispatch("getUsuario");
       this.$router.push({ name: "Usuario" });
     },
   },
