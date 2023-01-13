@@ -20,9 +20,14 @@
         autocomplete="current-password"
       />
       <button class="btn" @click.prevent="logar">Logar</button>
+      <ErroNotificacao :erros="erros" />
     </form>
     <p class="perdeu">
-      <a href="" target="_blank">Esquecei a senha</a>
+      <a
+        href="https://restapi.local/wp-login.php?action=lostpassword"
+        target="_blank"
+        >Esquecei a senha</a
+      >
     </p>
     <LoginCriar />
   </section>
@@ -30,6 +35,8 @@
 
 <script>
 import LoginCriar from "@/components/LoginCriar.vue";
+import ErroNotificacao from "@/components/ErroNotificacao.vue";
+
 export default {
   data() {
     return {
@@ -37,17 +44,26 @@ export default {
         email: "",
         senha: "",
       },
+      erros: [],
     };
   },
   components: {
     LoginCriar,
+    ErroNotificacao,
   },
 
   methods: {
     async logar() {
-      await this.$store.dispatch("logarUsuario", this.login);
-      await this.$store.dispatch("getUsuario");
-      this.$router.push({ name: "Usuario" });
+      this.erros = [];
+      try {
+        await this.$store.dispatch("logarUsuario", this.login);
+        await this.$store.dispatch("getUsuario");
+        this.$router.push({ name: "Usuario" });
+      } catch (error) {
+        const { response } = error;
+        const { data } = response;
+        this.erros.push(data.message);
+      }
     },
   },
 };

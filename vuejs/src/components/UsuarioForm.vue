@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent>
-    <div v-if="mostrarDadosLogin" class="usuiario">
+    <div v-if="mostrarDadosLogin" class="usuario">
       <label for="nome">Nome</label>
       <input
         type="text"
@@ -35,10 +35,11 @@
       name="cep"
       v-model="cep"
       @keyup="preencherCep"
+      min="0"
     />
 
     <label for="numero">Numero</label>
-    <input type="number" id="numero" name="numero" v-model="numero" />
+    <input type="number" id="numero" name="numero" v-model="numero" min="0" />
 
     <label for="rua">Rua</label>
     <input type="text" id="rua" name="rua" v-model="rua" />
@@ -110,8 +111,8 @@ form,
   grid-column: 1/3;
 }
 
-button {
+.button {
   margin-top: 10px;
-  grid-column: 2;
+  grid-column: 1/-1;
 }
 </style>

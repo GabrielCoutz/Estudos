@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     async getVendas() {
-      const { data } = await api.get(`/transacao?vendedor_id=${this.user.id}`);
+      const { data } = await api.get(`/transacao?tipo=vendedor_id`);
       this.vendas = data;
     },
   },

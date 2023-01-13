@@ -68,6 +68,7 @@ export default new Vuex.Store({
         estado: "",
       });
       context.commit("UPDATE_LOGIN", false);
+      localStorage.removeItem("token");
     },
 
     async logarUsuario(context, payload) {

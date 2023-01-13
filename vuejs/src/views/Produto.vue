@@ -10,7 +10,7 @@
         <h1>{{ produto.nome }}</h1>
         <p class="preco">{{ produto.preco | numeroPreco }}</p>
         <p class="descricao">{{ produto.descricao }}</p>
-        <transition v-if="Boolean(produto.vendido)" mode="out-in">
+        <transition v-if="produto.vendido" mode="out-in">
           <button class="btn" v-if="!finalizar" @click="finalizar = true">
             Comprar
           </button>
@@ -71,6 +71,21 @@ export default {
 
 .descricao {
   font-size: 1.2rem;
+}
+
+.fotos {
+  grid-row: 1/3;
+}
+
+.info {
+  top: 20px;
+  position: sticky;
+}
+
+img {
+  margin-bottom: 30px;
+  box-shadow: 0 4px 8px rgba(30, 60, 90, 0.1);
+  border-radius: 4px;
 }
 
 .btn {

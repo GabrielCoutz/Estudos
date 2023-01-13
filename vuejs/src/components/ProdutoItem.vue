@@ -1,9 +1,9 @@
 <template>
-  <div class="produto" v-if="produto">
-    <router-link :to="{ name: 'Produto', params: { id: produto.id } }">
+  <router-link :to="{ name: 'Produto', params: { id: produto.id } }">
+    <div class="produto" v-if="produto">
       <img
-        :src="produtos.fotos[0].src"
-        :alt="produtos.fotos[0].titulo"
+        :src="produto.fotos[0].src"
+        :alt="produto.fotos[0].titulo"
         v-if="produto.fotos"
         class="produto-img"
       />
@@ -12,8 +12,8 @@
         <h2 class="titulo">{{ produto.nome }}</h2>
         <slot></slot>
       </div>
-    </router-link>
-  </div>
+    </div>
+  </router-link>
 </template>
 
 <script>
@@ -31,11 +31,6 @@ export default {
   margin-bottom: 40px;
   position: relative;
 }
-
-.info {
-  align-self: flex-end;
-}
-
 .produto-img {
   border-radius: 4px;
   overflow: hidden;

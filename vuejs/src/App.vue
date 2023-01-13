@@ -13,11 +13,20 @@
 <script>
 import TheHeader from "./components/TheHeader.vue";
 import TheFooter from "./components/TheFooter.vue";
+import { api } from "@/services/index.js";
 
 export default {
   components: {
     TheHeader,
     TheFooter,
+  },
+  async created() {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+    await api
+      .validateToken()
+      .then(() => this.$store.dispatch("getUsuario"))
+      .catch((e) => localStorage.removeItem("token"));
   },
 };
 </script>
@@ -95,6 +104,16 @@ img {
 .btn:hover {
   background: #65d;
   transform: scale(1.1);
+}
+
+.btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn:disabled:hover {
+  background: #87f;
 }
 
 label {

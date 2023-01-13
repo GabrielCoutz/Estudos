@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     async getCompras() {
-      const { data } = await api.get(`/transacao?comprador_id=${this.user.id}`);
+      const { data } = await api.get(`/transacao?tipo=comprador_id`);
       this.compras = data;
     },
   },

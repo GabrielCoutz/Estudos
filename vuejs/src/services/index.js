@@ -9,8 +9,6 @@ axiosInstance.interceptors.request.use(
     const token = localStorage.getItem("token");
     if (token) {
       config.headers.Authorization = token;
-      config.headers["Access-Control-Allow-Origin"] = "http://localhost:8080";
-      config.headers["Access-Control-Allow-Headers"] = "X-Custom-Header";
     }
     return config;
   },
@@ -41,10 +39,9 @@ export const api = {
     return axios.post("https://restapi.local/wp-json/jwt-auth/v1/token", body);
   },
 
-  async validateToken(body) {
-    return axios.post(
-      "https://restapi.local/wp-json/jwt-auth/v1/token/validate",
-      body
+  async validateToken() {
+    return axiosInstance.post(
+      "https://restapi.local/wp-json/jwt-auth/v1/token/validate"
     );
   },
 };
