@@ -55,15 +55,17 @@ export default {
   methods: {
     async logar() {
       this.erros = [];
-      try {
-        await this.$store.dispatch("logarUsuario", this.login);
-        await this.$store.dispatch("getUsuario");
-        this.$router.push({ name: "Usuario" });
-      } catch (error) {
-        const { response } = error;
-        const { data } = response;
-        this.erros.push(data.message);
-      }
+      await this.$store
+        .dispatch("logarUsuario", this.login)
+        .then((r) => {
+          this.$store.dispatch("getUsuario");
+          this.$router.push({ name: "Usuario" });
+        })
+        .catch((error) => {
+          const { response } = error;
+          const { data } = response;
+          this.erros.push(data.message);
+        });
     },
   },
 };

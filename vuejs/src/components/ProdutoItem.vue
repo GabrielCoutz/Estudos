@@ -40,4 +40,11 @@ export default {
 .produto:hover {
   transform: none;
 }
+
+@media (max-width: 500px) {
+  .produtos {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
 </style>

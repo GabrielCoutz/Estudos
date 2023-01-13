@@ -82,6 +82,18 @@ export default {
   position: sticky;
 }
 
+@media (max-width: 500px) {
+  .produto {
+    grid-template-columns: 1fr;
+  }
+  .fotos {
+    grid-row: 2;
+  }
+  .info {
+    position: initial;
+  }
+}
+
 img {
   margin-bottom: 30px;
   box-shadow: 0 4px 8px rgba(30, 60, 90, 0.1);

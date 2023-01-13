@@ -132,6 +132,7 @@ textarea {
   margin-bottom: 15px;
   background: #ffffff78;
   backdrop-filter: blur(11px);
+  width: 100%;
 }
 
 input:hover,

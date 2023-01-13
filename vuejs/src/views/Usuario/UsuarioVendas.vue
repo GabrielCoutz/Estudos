@@ -84,4 +84,14 @@ h3 {
   justify-self: end;
   margin: 0;
 }
+
+@media (max-width: 500px) {
+  .entrega {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  h3 {
+    justify-self: start;
+  }
+}
 </style>
