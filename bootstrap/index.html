@@ -9,6 +9,44 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
+    <!-- Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5">Entre na sua conta</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="email"
+                  placeholder="exemplo@gmail.com"
+                />
+              </div>
+              <div class="form-group mb-3">
+                <label for="senha" class="form-label">Senha</label>
+                <input type="password" class="form-control" id="senha" />
+              </div>
+              <button class="btn btn-primary py-2 px-4">Entrar</button>
+              <small class="text-muted d-block mt-3">
+                Esqueceu a senha? <a href="">Recupere.</a>
+              </small>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <nav
       class="navbar navbar-expand-md navbar-light bg-light fixed-top p-3 box-shadow"
     >
@@ -57,7 +95,13 @@
             <a class="nav-link" href="contato.html">Contato</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Login</a>
+            <a
+              class="nav-link"
+              href="#"
+              data-bs-toggle="modal"
+              data-bs-target="#loginModal"
+              >Login</a
+            >
           </li>
           <li class="nav-item">
             <a class="btn btn-outline-primary ml-md-2" href="#">inscreva-se</a>
@@ -261,7 +305,7 @@
         <h2 class="display-4 text-primary d-block">Perguntas Frequentes</h2>
       </div>
       <div class="row justify-content-center">
-        <div class="col-6">
+        <div class="col-md-8 col-12">
           <div class="accordion" id="accordionFaq">
             <div class="accordion-item border-0">
               <h2 class="accordion-header fs-3 text-primary">
