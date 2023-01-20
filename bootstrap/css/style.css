@@ -15,6 +15,14 @@ body {
   background-size: cover;
 }
 
+.lista-plano li {
+  padding: 1rem;
+}
+
+.lista-plano li:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+}
+
 @media (max-width: 767px) {
   #quote .display-4 {
     font-size: 2.5rem;
