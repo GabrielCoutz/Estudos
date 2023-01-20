@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inscrição</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5">Entre na sua conta</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group mb-3">
+                <label for="Modalemail" class="form-label">Email</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="Modalemail"
+                  placeholder="exemplo@gmail.com"
+                />
+              </div>
+              <div class="form-group mb-3">
+                <label for="Modalsenha" class="form-label">Senha</label>
+                <input type="password" class="form-control" id="Modalsenha" />
+              </div>
+              <button class="btn btn-primary py-2 px-4">Entrar</button>
+              <small class="text-muted d-block mt-3">
+                Esqueceu a senha? <a href="">Recupere.</a>
+              </small>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav
+      class="navbar navbar-expand-md navbar-light bg-light fixed-top p-3 box-shadow"
+    >
+      <a href="#" class="navbar-brand">
+        <img src="img/caravan.svg" alt="Caravan" />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      ></button>
+      <div
+        class="collapse navbar-collapse justify-content-end"
+        id="navbarSupportedContent"
+      >
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"></li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              >Locais</a
+            >
+            <ul class="dropdown-menu">
+              <li>
+                <a href="#" class="dropdown-item">California</a>
+              </li>
+              <li>
+                <a href="#" class="dropdown-item">Paris</a>
+              </li>
+              <li>
+                <a href="#" class="dropdown-item">Dubai</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="planos.html">Planos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contato.html">Contato</a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              href="#"
+              data-bs-toggle="modal"
+              data-bs-target="#loginModal"
+              >Login</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-primary ml-md-2" href="#">inscreva-se</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="container">
+      <div class="my-5 text-center">
+        <span class="h6 d-block text-uppercase"
+          >Programe a viagem do seu sonho</span
+        >
+        <h1 class="display-4 text-primary d-block">Inscreva-se</h1>
+      </div>
+      <div class="row">
+        <form class="col-md-6">
+          <div class="row g-3 mb-2">
+            <div class="col-sm-6">
+              <label for="nome" class="form-label">Nome</label>
+              <input type="text" id="nome" class="form-control" />
+            </div>
+            <div class="col-sm-6">
+              <label for="cpf" class="form-label">CPF</label>
+              <input type="text" id="cpf" class="form-control" />
+            </div>
+          </div>
+          <div class="row g-3 mb-2">
+            <div class="col-sm">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" id="email" class="form-control" />
+            </div>
+            <div class="col-sm">
+              <label for="senha" class="form-label">Senha</label>
+              <input type="password" id="senha" class="form-control" />
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col">
+              <label for="endereco" class="form-label">Endereço</label>
+              <input type="text" id="endereco" class="form-control" />
+            </div>
+          </div>
+          <div class="row g-3 mb-2">
+            <div class="col-sm-6">
+              <label for="cidade" class="form-label">Cidade</label>
+              <input type="text" id="cidade" class="form-control" />
+            </div>
+            <div class="col-sm-3 col-6">
+              <label for="estado" class="form-label">Estado</label>
+              <select class="form-select mb-3">
+                <option selected value="" id="estado" disabled>
+                  Selecione o estado
+                </option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
+            <div class="col-sm-3 col-6">
+              <label for="cep" class="form-label">CEP</label>
+              <input
+                type="text"
+                id="cep"
+                class="form-control"
+                placeholder="xxxxx-xxx"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <footer class="bg-dark text-white mt-5">
+      <div class="container py-4">
+        <div class="row">
+          <div class="col-md-3 col-6">
+            <h2 class="h6 text-uppercase">Páginas</h2>
+            <ul class="list-unstyled">
+              <li>
+                <a class="text-decoration-none" href="planos.html">Planos</a>
+              </li>
+              <li>
+                <a class="text-decoration-none" href="contato.html">Contato</a>
+              </li>
+              <li>
+                <a class="text-decoration-none" href="inscricao.html"
+                  >Inscreva-se</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-3 col-6">
+            <h4 class="h6 text-uppercase">Locais</h4>
+            <ul class="list-unstyled">
+              <li>
+                <a class="text-decoration-none" href="local.html">Califórnia</a>
+              </li>
+              <li>
+                <a class="text-decoration-none" href="local.html">Paris</a>
+              </li>
+              <li>
+                <a class="text-decoration-none" href="local.html">Dublin</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4 col-6">
+            <h4 class="h6 text-uppercase">Dados de contato</h4>
+            <ul class="list-unstyled">
+              <li class="text-secondary">caravan@caravan.com.br</li>
+              <li class="text-secondary">21 99999-9999</li>
+              <li class="text-secondary">De Seg à Sex. das 8h às 18h</li>
+            </ul>
+          </div>
+          <div class="col-md-2 col-6">
+            <h4 class="h6 text-uppercase">Redes sociais</h4>
+            <ul class="list-unstyled">
+              <li class="text-secondary">
+                <button
+                  class="bg-dark border btn-outline-secondary w-100 btn text-secondary mb-2"
+                >
+                  Facebook
+                </button>
+              </li>
+              <li class="text-secondary">
+                <button
+                  class="bg-dark border btn-outline-secondary w-100 btn text-secondary mb-2"
+                >
+                  Twitter
+                </button>
+              </li>
+              <li class="text-secondary">
+                <button
+                  class="bg-dark border btn-outline-secondary w-100 btn text-secondary mb-2"
+                >
+                  YouTube
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="bg-primary text-center py-3">
+        <p class="mb-0">Todos direitos reservados</p>
+      </div>
+    </footer>
+  </body>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/script.js"></script>
+</html>
