@@ -171,7 +171,177 @@
               />
             </div>
           </div>
+          <div class="bg-light rounded box-shadow p-3">
+            <h2 class="h6 text-primary">Forma de pagamento</h2>
+            <ul class="nav nav-tabs my-4 btn-group" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button
+                  class="active btn btn-secondary rounded-0 rounded-top"
+                  id="cartao"
+                  data-bs-toggle="tab"
+                  data-bs-target="#cartao-pane"
+                  type="button"
+                  role="tab"
+                  aria-controls="cartao-pane"
+                  aria-selected="true"
+                >
+                  Cartão de crédito
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="btn btn-secondary rounded-0 rounded-top"
+                  id="boleto"
+                  data-bs-toggle="tab"
+                  data-bs-target="#boleto-pane"
+                  type="button"
+                  role="tab"
+                  aria-controls="boleto-pane"
+                  aria-selected="false"
+                >
+                  Boleto
+                </button>
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div
+                class="tab-pane fade show active"
+                id="cartao-pane"
+                role="tabpanel"
+                aria-labelledby="cartao"
+                tabindex="0"
+              >
+                <div class="row">
+                  <div class="col-lg-6">
+                    <label for="nomeCartao" class="form-label"
+                      >Nome no Cartão</label
+                    >
+                    <input type="text" id="nomeCartao" class="form-control" />
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="row">
+                      <div class="col-6">
+                        <label for="mesCartao" class="form-label">Mês</label>
+                        <select class="form-select mb-3">
+                          <option selected value="" id="mesCartao" disabled>
+                            Mês de vencimento
+                          </option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                        </select>
+                      </div>
+                      <div class="col-6">
+                        <label for="anoCartao" class="form-label">Ano</label>
+                        <select class="form-select mb-3">
+                          <option selected value="" id="anoCartao" disabled>
+                            Ano de vencimento
+                          </option>
+                          <option value="1">2024</option>
+                          <option value="2">2025</option>
+                          <option value="3">2026</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <label for="numCartao" class="form-label"
+                      >Número do Cartão</label
+                    >
+                    <input
+                      type="text"
+                      id="numCartao"
+                      class="form-control"
+                      placeholder="0000 0000 0000 0000"
+                    />
+                  </div>
+                  <div class="col-6">
+                    <label for="codCartao" class="form-label">CVV</label>
+                    <input
+                      type="number"
+                      id="codCartao"
+                      class="form-control"
+                      placeholder="000"
+                    />
+                  </div>
+                  <hr class="my-4" />
+                  <div class="form-check mb-4">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="termos"
+                    />
+                    <label class="form-check-label" for="termos">
+                      Li e concordo com os
+                      <a href="#" class="text-primary">Termos e Condições</a>.
+                    </label>
+                  </div>
+                  <button class="btn btn-primary">Contratar Plano</button>
+                </div>
+              </div>
+              <div
+                class="tab-pane fade"
+                id="boleto-pane"
+                role="tabpanel"
+                aria-labelledby="boleto"
+                tabindex="0"
+              >
+                <p class="fs-5">
+                  Clique em contratar plano que enviaremos um boleto para seu
+                  email.
+                </p>
+                <hr class="my-4" />
+                <div class="form-check mb-4">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="termos"
+                  />
+                  <label class="form-check-label" for="termos">
+                    Li e concordo com os
+                    <a href="#" class="text-primary">Termos e Condições</a>.
+                  </label>
+                </div>
+                <button class="btn btn-primary w-100">Contratar Plano</button>
+              </div>
+            </div>
+          </div>
         </form>
+
+        <div class="col-md mb-5 mx-auto order-lg order-1">
+          <h2 class="h6 text-primary">Plano escolhido</h2>
+          <div class="bg-light rounded p-4 box-shadow">
+            <h2>Gold</h2>
+            <ul class="list-unstyled lista-plano">
+              <li>30 dias de viagem</li>
+              <li>3 destinos diferentes</li>
+              <li>Tudo pago pela empresa</li>
+              <li>Ingressos para festas</li>
+            </ul>
+            <form>
+              <label for="cidades"></label>
+              <select
+                class="form-select"
+                aria-label="Default select example bg-light"
+                id="cidades"
+              >
+                <option selected disabled value="">Selecione a cidade</option>
+                <option value="1">Dublin</option>
+                <option value="2">Paris</option>
+                <option value="3">Dublin</option>
+              </select>
+            </form>
+            <div class="row mt-4 align-items-center">
+              <div class="col">
+                <span class="h4">R$ 5.000</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
