@@ -1,4 +1,4 @@
-@import "header";
+@import "modal";
 
 @mixin sombra() {
   box-shadow: 0 0 0 black;
@@ -6,4 +6,10 @@
 
 h1 {
   @include sombra();
+  font-size: 5rem;
+  color: white;
+}
+
+span {
+  display: block;
 }

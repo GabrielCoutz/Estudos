@@ -9,7 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "browser-sync": "^2.27.11",
     "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
     "gulp-sass": "^5.1.0",
     "node-sass": "^8.0.0",
     "sass": "^1.57.1",

@@ -1,11 +1,37 @@
-const { src, dest, task } = require("gulp");
+const gulp = require("gulp");
 const sass = require("gulp-sass")(require("sass"));
+const autoprefixer = require("gulp-autoprefixer");
+const browserSync = require("browser-sync").create();
 
 function compilaSass(cb) {
-  src("css/scss/*.scss")
+  gulp
+    .src("css/scss/*.scss")
     .pipe(sass({ outputStyle: "compressed" }))
-    .pipe(dest("css/"));
+    .pipe(
+      autoprefixer({
+        overrideBrowserslist: ["last 2 versions"],
+        cascade: false,
+      })
+    )
+    .pipe(gulp.dest("css/"))
+    .pipe(browserSync.stream());
   cb();
 }
 
-task("teste", compilaSass);
+function browser() {
+  browserSync.init({
+    server: {
+      baseDir: "./",
+    },
+  });
+}
+
+function watch() {
+  gulp.watch("css/scss/*.scss", gulp.series("compilaSass"));
+  gulp.watch("*.html").on("change", browserSync.reload);
+}
+
+gulp.task("watch", watch);
+gulp.task("compilaSass", compilaSass);
+gulp.task("browserSync", browser);
+gulp.task("default", gulp.parallel("watch", "browserSync"));
