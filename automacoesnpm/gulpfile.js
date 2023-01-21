@@ -2,6 +2,9 @@ const gulp = require("gulp");
 const sass = require("gulp-sass")(require("sass"));
 const autoprefixer = require("gulp-autoprefixer");
 const browserSync = require("browser-sync").create();
+const concat = require("gulp-concat");
+const babel = require("gulp-babel");
+const uglify = require("gulp-uglify-es").default;
 
 function compilaSass(cb) {
   gulp
@@ -28,10 +31,25 @@ function browser() {
 
 function watch() {
   gulp.watch("css/scss/*.scss", gulp.series("compilaSass"));
-  gulp.watch("*.html").on("change", browserSync.reload);
+  gulp.watch(["js/main/*.js"], gulpJs);
+  gulp.watch(["*.html", "js/*.js"]).on("change", browserSync.reload);
 }
 
-gulp.task("watch", watch);
-gulp.task("compilaSass", compilaSass);
-gulp.task("browserSync", browser);
-gulp.task("default", gulp.parallel("watch", "browserSync"));
+function gulpJs() {
+  return gulp
+    .src("./js/main/*.js")
+    .pipe(concat("script.js"))
+    .pipe(
+      babel({
+        presets: ["@babel/env"],
+      })
+    )
+    .pipe(uglify())
+    .pipe(gulp.dest("./js/"));
+}
+
+exports.gulpJs = gulpJs;
+exports.watch = watch;
+exports.compilaSass = compilaSass;
+exports.browser = browser;
+exports.default = gulp.parallel(watch, browser, compilaSass, gulpJs);

@@ -8,10 +8,16 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
+    "gulp-uglify-es": "^3.0.0",
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2",
     "browser-sync": "^2.27.11",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
     "gulp-sass": "^5.1.0",
     "node-sass": "^8.0.0",
     "sass": "^1.57.1",
