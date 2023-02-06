@@ -1,0 +1,12 @@
+<select name="" id="" [(ngModel)]="item">
+  <option value="" disabled selected>Selecione um numero</option>
+  <option value="um">um</option>
+  <option value="dois">dois</option>
+  <option value="tres">três</option>
+</select>
+
+<div [ngSwitch]="item">
+  <p *ngSwitchCase="'um'">um</p>
+  <p *ngSwitchCase="'dois'">dois</p>
+  <p *ngSwitchCase="'tres'">tres</p>
+</div>
