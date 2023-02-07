@@ -11,6 +11,7 @@ import { AtributosComponent } from './atributos/atributos.component';
 
 import ptBr from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { SharedModule } from './shared/shared.module';
 
 registerLocaleData(ptBr);
 
@@ -22,7 +23,7 @@ registerLocaleData(ptBr);
     DiretivasComponent,
     AtributosComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, SharedModule],
   providers: [
     {
       provide: LOCALE_ID,
