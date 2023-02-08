@@ -1,5 +1,11 @@
 <ul>
   <li *ngFor="let food of foodList">
     {{ food.name }}
+    <div>
+      <input type="text" [(ngModel)]="food.name" />
+    <button (click)="foodListUpdate(food)">Atualizar</button>
+
+    </div>
+    <button (click)="foodListDelete(food)">Deletar</button>
   </li>
 </ul>

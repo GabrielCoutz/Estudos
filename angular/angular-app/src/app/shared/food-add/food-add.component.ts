@@ -10,6 +10,9 @@ export class FoodAddComponent {
   constructor(private foodListService: FoodListService) {}
 
   listAddItem(item: string) {
-    return this.foodListService.foodListAdd(item);
+    this.foodListService.foodListAdd(item).subscribe({
+      next: (res) => this.foodListService.foodListAlert(res),
+      error: (error) => console.log(error),
+    });
   }
 }

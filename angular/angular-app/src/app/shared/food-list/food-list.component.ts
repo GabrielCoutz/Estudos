@@ -8,7 +8,7 @@ import { FoodListService } from 'src/app/services/food-list.service';
   styleUrls: ['./food-list.component.scss'],
 })
 export class FoodListComponent {
-  foodList: FoodList[] | any = [];
+  foodList: FoodList[] = [];
 
   constructor(private foodListService: FoodListService) {}
 
@@ -18,8 +18,20 @@ export class FoodListComponent {
       error: (error) => console.log(error),
     });
 
-    this.foodListService.emitEvent.subscribe((res) =>
-      console.log(`Adicionado ${res} à list`)
-    );
+    this.foodListService.emitEvent.subscribe((res) => this.foodList.push(res));
+  }
+
+  foodListDelete(food: FoodList) {
+    this.foodListService.foodListDelete(food).subscribe((res) => {
+      const indexDeletedItem = this.foodList.indexOf(res);
+      this.foodList.splice(indexDeletedItem, 1);
+    });
+  }
+
+  foodListUpdate(newFood: FoodList) {
+    this.foodListService.foodListUpdate(newFood).subscribe((res) => {
+      const indexOldFood = this.foodList.indexOf(res);
+      this.foodList[indexOldFood] = newFood;
+    });
   }
 }
