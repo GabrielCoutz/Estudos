@@ -1,6 +1,9 @@
 <form [formGroup]="cadastroForm" (ngSubmit)="showLog()">
   <div>
-    <label for="">First name</label>
+    <label for=""
+      >First name
+      <span *ngIf="cadastroForm.get('firstName')?.invalid">*</span>
+    </label>
   </div>
   <input type="text" formControlName="firstName" />
   <div
@@ -13,6 +16,23 @@
     <span>Preencha o nome!</span>
   </div>
   <div>
-    <button>Enviar</button>
+    <label for=""
+      >Last name
+      <span *ngIf="cadastroForm.get('lastName')?.invalid">*</span>
+    </label>
+  </div>
+  <input type="text" formControlName="lastName" />
+  <div>
+    <label for=""
+      >Nickname
+      <span *ngIf="cadastroForm.get('nickname')?.invalid">*</span>
+    </label>
+  </div>
+  <input type="text" formControlName="nickname" />
+  <div>
+    <span *ngIf="!cadastroForm.valid"
+      >Por favor, preencha todos os campos requeridos (*)</span
+    >
+    <button [disabled]="!cadastroForm.valid">Enviar</button>
   </div>
 </form>

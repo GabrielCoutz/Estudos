@@ -11,9 +11,13 @@ export class ReactiveFormsComponent {
 
   cadastroForm: FormGroup = this.formBuilder.group({
     firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
+    nickname: [''],
   });
 
   showLog() {
-    console.log(this.cadastroForm.value);
+    if (this.cadastroForm.valid) {
+      console.log('valido');
+    }
   }
 }
