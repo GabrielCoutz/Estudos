@@ -1,11 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
+import { HomeComponent } from './pages/home/home.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { SobreComponent } from './pages/sobre/sobre.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ReactiveFormsComponent,
+    component: HomeComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'sobre',
+    component: SobreComponent,
+  },
+  {
+    path: '404',
+    component: NotFoundComponent,
   },
 ];
 
