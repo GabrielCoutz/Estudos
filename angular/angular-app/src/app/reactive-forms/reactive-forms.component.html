@@ -1,0 +1,18 @@
+<form [formGroup]="cadastroForm" (ngSubmit)="showLog()">
+  <div>
+    <label for="">First name</label>
+  </div>
+  <input type="text" formControlName="firstName" />
+  <div
+    *ngIf="
+      cadastroForm.get('firstName')?.invalid &&
+      (cadastroForm.get('firstName')?.dirty ||
+        cadastroForm.get('firstName')?.touched)
+    "
+  >
+    <span>Preencha o nome!</span>
+  </div>
+  <div>
+    <button>Enviar</button>
+  </div>
+</form>
