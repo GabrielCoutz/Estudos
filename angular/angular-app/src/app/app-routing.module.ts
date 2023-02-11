@@ -13,10 +13,25 @@ const routes: Routes = [
   {
     path: 'sobre',
     component: SobreComponent,
+    children: [
+      {
+        path: ':id',
+        component: SobreComponent,
+      },
+    ],
+  },
+  {
+    path: 'dashboard',
+    loadChildren: async () =>
+      (await import('./dashboard/dashboard.module')).DashboardModule,
   },
   {
     path: '404',
     component: NotFoundComponent,
+  },
+  {
+    path: '**',
+    redirectTo: '404',
   },
 ];
 
