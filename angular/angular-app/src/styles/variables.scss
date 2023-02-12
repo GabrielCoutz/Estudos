@@ -1,4 +1,9 @@
+@import "./mixins.scss";
+
 $white: #fff;
+$gray: #3b3b3b;
 
 $primary-color: #262835;
 $secondary-color: #ff5473;
+
+$padding: rem-calc(20);

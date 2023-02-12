@@ -1,12 +1,17 @@
-@use "./styles/mixins.scss";
+@import "./styles/mixins.scss";
 @import "./styles/reset";
 @import "./styles/variables";
 
 html {
   background-color: $primary-color;
+  color: $white;
 }
 
 main {
-  max-width: rem-calc(600);
+  width: rem-calc(600);
   margin: 0 auto;
+}
+
+input {
+  outline: none;
 }
