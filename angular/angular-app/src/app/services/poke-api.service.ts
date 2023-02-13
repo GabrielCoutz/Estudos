@@ -20,7 +20,7 @@ export class PokeApiService {
 
   setPokemonInfo(results: Pokemon[]): Subscription[] {
     return results.map((pokemon) =>
-      this.request.get(pokemon.url).subscribe((response: any) => {
+      this.apiGetPokemon<Pokemon>(pokemon.url).subscribe((response: any) => {
         const { sprites, types, id }: DirtyResponseApi = response;
 
         pokemon.id = id;
@@ -28,5 +28,9 @@ export class PokeApiService {
         pokemon.types = types.map(({ type }) => type.name);
       })
     );
+  }
+
+  apiGetPokemon<T>(url: string): Observable<T> {
+    return this.request.get<T>(url);
   }
 }
