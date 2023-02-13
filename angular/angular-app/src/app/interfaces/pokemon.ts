@@ -3,6 +3,7 @@ export interface Pokemon {
   name: string;
   types: string[];
   url: string;
+  id: string;
 }
 
 export interface ApiResponse {
@@ -10,8 +11,13 @@ export interface ApiResponse {
 }
 
 export interface DirtyResponseApi {
+  id: string;
   sprites: {
-    front_default: string;
+    other: {
+      dream_world: {
+        front_default: string;
+      };
+    };
   };
   types: {
     type: {

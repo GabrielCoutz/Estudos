@@ -21,9 +21,11 @@ export class PokeApiService {
   setPokemonInfo(results: Pokemon[]): Subscription[] {
     return results.map((pokemon) =>
       this.request.get(pokemon.url).subscribe((response: any) => {
-        const dirtyPokemon: DirtyResponseApi = response;
-        pokemon.img = dirtyPokemon.sprites.front_default;
-        pokemon.types = dirtyPokemon.types.map(({ type }) => type.name);
+        const { sprites, types, id }: DirtyResponseApi = response;
+
+        pokemon.id = id;
+        pokemon.img = sprites.other.dream_world.front_default;
+        pokemon.types = types.map(({ type }) => type.name);
       })
     );
   }

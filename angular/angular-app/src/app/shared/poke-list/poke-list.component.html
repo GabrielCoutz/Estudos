@@ -1,17 +1,17 @@
 <ng-template ngIf="pokemonList">
   <ul class="listagem">
-    <li class="pokemon" *ngFor="let item of pokemonList">
-      <a href="">
+    <li class="pokemon" *ngFor="let pokemon of pokemonList">
+      <a [routerLink]="['details', pokemon.id]">
         <section class="stats">
-          <h2>{{ item.name }}</h2>
+          <h2>{{ pokemon.name }}</h2>
 
-          <ul *ngFor="let type of item.types">
+          <ul *ngFor="let type of pokemon.types">
             <li>{{ type }}</li>
           </ul>
         </section>
 
         <section class="image">
-          <img [src]="item.img" [alt]="item.name" />
+          <img [src]="pokemon.img" [alt]="pokemon.name" />
         </section>
       </a>
     </li>
