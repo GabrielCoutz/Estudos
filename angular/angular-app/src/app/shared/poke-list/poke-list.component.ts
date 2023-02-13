@@ -10,11 +10,20 @@ import { PokeApiService } from 'src/app/services/poke-api.service';
 export class PokeListComponent {
   constructor(private pokeApiService: PokeApiService) {}
 
-  pokemonList: Pokemon[] | null = null;
+  filtredPokemonList: Pokemon[] | undefined;
+  private staticPokemonList: Pokemon[] | undefined;
 
   ngOnInit() {
-    this.pokeApiService.listAllPokemons.subscribe(
-      ({ results }) => (this.pokemonList = results)
+    this.pokeApiService.listAllPokemons.subscribe(({ results }) => {
+      this.staticPokemonList = results;
+      this.filtredPokemonList = this.staticPokemonList;
+    });
+  }
+
+  getSearch(value: string) {
+    const filter = this.staticPokemonList?.filter(
+      (pokemon) => !pokemon.name.indexOf(value.toLocaleLowerCase())
     );
+    this.filtredPokemonList = filter;
   }
 }

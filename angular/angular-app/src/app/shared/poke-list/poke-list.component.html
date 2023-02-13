@@ -1,6 +1,8 @@
+<app-poke-search (emmitSearch)="getSearch($event)"></app-poke-search>
+
 <ng-template ngIf="pokemonList">
   <ul class="listagem">
-    <li class="pokemon" *ngFor="let pokemon of pokemonList">
+    <li class="pokemon" *ngFor="let pokemon of filtredPokemonList">
       <a [routerLink]="['details', pokemon.id]">
         <section class="stats">
           <h2>{{ pokemon.name }}</h2>
