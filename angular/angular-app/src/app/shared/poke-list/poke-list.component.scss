@@ -40,30 +40,15 @@
       }
 
       & .image {
-        position: absolute;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        right: $padding;
-        bottom: $padding;
         background: url("../../../assets/bg/background-list-pokemons.svg")
           no-repeat;
-
-        img {
-          width: rem-calc(60);
-        }
       }
 
       a {
         padding: $padding;
         width: 100%;
-      }
-    }
-
-    @media (max-width: 400px) {
-      a {
-        width: 100% !important;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
       }
     }
   }

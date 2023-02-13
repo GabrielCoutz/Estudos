@@ -5,14 +5,13 @@
         <section class="stats">
           <h2>{{ item.name }}</h2>
 
-          <ul>
-            <li>Grass</li>
-            <li>Poison</li>
+          <ul *ngFor="let type of item.types">
+            <li>{{ type }}</li>
           </ul>
         </section>
 
         <section class="image">
-          <img [src]="item.status?.sprites.front_default" [alt]="item.name" />
+          <img [src]="item.img" [alt]="item.name" />
         </section>
       </a>
     </li>

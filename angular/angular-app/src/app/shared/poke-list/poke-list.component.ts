@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Pokemon } from 'src/app/interfaces/pokemon';
 import { PokeApiService } from 'src/app/services/poke-api.service';
 
 @Component({
@@ -9,12 +10,11 @@ import { PokeApiService } from 'src/app/services/poke-api.service';
 export class PokeListComponent {
   constructor(private pokeApiService: PokeApiService) {}
 
-  pokemonList: any;
+  pokemonList: Pokemon[] | null = null;
 
   ngOnInit() {
-    this.pokeApiService.listAllPokemons.subscribe((res) => {
-      this.pokemonList = res.results;
-      console.log(this.pokemonList);
-    });
+    this.pokeApiService.listAllPokemons.subscribe(
+      ({ results }) => (this.pokemonList = results)
+    );
   }
 }
