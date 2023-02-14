@@ -12,10 +12,12 @@ export class WithdrawComponent {
   handleClick(input: string): void {
     const value = +input;
 
+    if (isNaN(value) || !value) return;
+
     if (this.haveEnoughMoney(value)) this.bankService.makeWithdraw(value);
   }
 
-  haveEnoughMoney(number: number): boolean {
+  private haveEnoughMoney(number: number): boolean {
     return number <= this.bankService.getSavings;
   }
 }

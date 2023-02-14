@@ -8,9 +8,8 @@ describe('WithdrawComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WithdrawComponent ]
-    })
-    .compileComponents();
+      declarations: [WithdrawComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(WithdrawComponent);
     component = fixture.componentInstance;
@@ -19,5 +18,9 @@ describe('WithdrawComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('handleClick recive empty string', () => {
+    expect(component.handleClick('')).toBeUndefined();
   });
 });

@@ -12,6 +12,8 @@ export class DepositComponent {
   handleClick(input: string): void {
     const value = +input;
 
+    if (isNaN(value) || !value) return;
+
     this.bankService.makeDeposit(value);
   }
 }

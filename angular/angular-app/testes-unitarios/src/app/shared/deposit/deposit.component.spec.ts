@@ -8,9 +8,8 @@ describe('DepositComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DepositComponent ]
-    })
-    .compileComponents();
+      declarations: [DepositComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DepositComponent);
     component = fixture.componentInstance;
@@ -19,5 +18,9 @@ describe('DepositComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('handleClick recive empty string', () => {
+    expect(component.handleClick('')).toBeUndefined();
   });
 });

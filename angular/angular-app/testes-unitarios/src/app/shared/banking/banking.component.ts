@@ -5,9 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './banking.component.html',
   styleUrls: ['./banking.component.scss'],
 })
-export class BankingComponent {
-  recieveUserWitdraw(event: number) {
-    console.log(event);
-  }
-}
- 
+export class BankingComponent {}
