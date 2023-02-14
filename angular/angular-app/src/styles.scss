@@ -1,6 +1,7 @@
 @import "./styles/mixins.scss";
 @import "./styles/reset";
 @import "./styles/variables";
+@import "./styles/buttons";
 
 html {
   background-color: $primary-color;
@@ -8,7 +9,7 @@ html {
 }
 
 main {
-  width: rem-calc(600);
+  max-width: rem-calc(600);
   margin: 0 auto;
 }
 

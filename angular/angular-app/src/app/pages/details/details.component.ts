@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { forkJoin, Observable } from 'rxjs';
-import { Pokemon, Species } from 'src/app/interfaces/pokemon';
+import { forkJoin } from 'rxjs';
+import { DirtyResponseApi, Pokemon, Species } from 'src/app/interfaces/pokemon';
 
 import { PokeApiService } from 'src/app/services/poke-api.service';
 
@@ -23,21 +23,36 @@ export class DetailsComponent {
   ngOnInit() {
     const id: string = this.route.snapshot.params['id'];
 
-    const responsePokemon = this.services.apiGetPokemon<Pokemon>(
+    const responsePokemon = this.services.apiGetPokemon<DirtyResponseApi>(
       `${this.pokemon_url}/${id}`
     );
-
     const responseSpecies = this.services.apiGetPokemon<Species>(
       `${this.species_url}/${id}`
     );
 
     forkJoin([responsePokemon, responseSpecies]).subscribe(
       ([pokemon, species]) => {
-        this.pokemon = pokemon;
-        this.pokemon.color = species.color.name;
-        this.pokemon.species.push(species.names[0].name);
-        console.log(this.pokemon);
+        this.pokemon = this.createPokemonObjectFromResponses(pokemon, species);
       }
     );
+  }
+
+  createPokemonObjectFromResponses(
+    response: DirtyResponseApi,
+    species: Species
+  ): Pokemon {
+    return {
+      color: species.color.name,
+      id: response.id,
+      species: [species.color.name],
+      url: `${this.pokemon_url}/${response.id}`,
+      img: response.sprites.other.dream_world.front_default,
+      types: response.types.map(({ type }) => type.name),
+      name: response.name,
+      stats: response.stats.map(({ base_stat, stat }) => ({
+        base_stat,
+        name: stat.name,
+      })),
+    };
   }
 }

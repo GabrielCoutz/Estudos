@@ -6,6 +6,10 @@ export interface Pokemon {
   id: string;
   species: string[];
   color: string;
+  stats: {
+    name: string;
+    base_stat: number;
+  }[];
 }
 
 export interface Species {
@@ -23,6 +27,7 @@ export interface ApiResponse {
 
 export interface DirtyResponseApi {
   id: string;
+  name: string;
   sprites: {
     other: {
       dream_world: {
@@ -32,6 +37,12 @@ export interface DirtyResponseApi {
   };
   types: {
     type: {
+      name: string;
+    };
+  }[];
+  stats: {
+    base_stat: number;
+    stat: {
       name: string;
     };
   }[];
