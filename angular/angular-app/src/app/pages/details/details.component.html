@@ -5,7 +5,7 @@
     <section>
       <img [src]="pokemon.img" [alt]="pokemon.name" class="image" />
       <article class="info">
-        <!-- <h2>Estatísticas</h2> -->
+        <h2>Estatísticas</h2>
         <ul class="stats">
           <li *ngFor="let value of pokemon.stats">
             {{ value.name }}
@@ -19,3 +19,4 @@
     </section>
   </ng-template>
 </main>
+<app-erro *ngIf="erro"></app-erro>

@@ -16,16 +16,22 @@ export class DetailsComponent {
     private services: PokeApiService
   ) {}
 
+  erro: boolean = false;
   pokemon: Pokemon | undefined;
   pokemon_url = 'https://pokeapi.co/api/v2/pokemon';
   species_url = 'https://pokeapi.co/api/v2/pokemon-species';
 
   ngOnInit() {
+    this.getPokemon();
+  }
+
+  getPokemon() {
     const id: string = this.route.snapshot.params['id'];
 
     const responsePokemon = this.services.apiGetPokemon<DirtyResponseApi>(
       `${this.pokemon_url}/${id}`
     );
+
     const responseSpecies = this.services.apiGetPokemon<Species>(
       `${this.species_url}/${id}`
     );
@@ -33,6 +39,9 @@ export class DetailsComponent {
     forkJoin([responsePokemon, responseSpecies]).subscribe(
       ([pokemon, species]) => {
         this.pokemon = this.createPokemonObjectFromResponses(pokemon, species);
+      },
+      (err) => {
+        this.erro = true;
       }
     );
   }
