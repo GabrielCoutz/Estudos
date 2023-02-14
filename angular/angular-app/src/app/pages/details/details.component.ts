@@ -36,14 +36,14 @@ export class DetailsComponent {
       `${this.species_url}/${id}`
     );
 
-    forkJoin([responsePokemon, responseSpecies]).subscribe(
-      ([pokemon, species]) => {
+    forkJoin([responsePokemon, responseSpecies]).subscribe({
+      next: ([pokemon, species]) => {
         this.pokemon = this.createPokemonObjectFromResponses(pokemon, species);
       },
-      (err) => {
+      error: (err) => {
         this.erro = true;
-      }
-    );
+      },
+    });
   }
 
   createPokemonObjectFromResponses(
