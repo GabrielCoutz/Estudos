@@ -1,9 +1,5 @@
 <section>
   <h1>xampson</h1>
-  <p>Poupança: {{ getSavings }}</p>
-  <input type="text" #valueToWithdraw />
-  <button (click)="withdraw(valueToWithdraw.value)" [disabled]="!getSavings">
-    Withdraw
-  </button>
-  <p>Carteira: {{ getWallet }}</p>
+  <app-withdraw></app-withdraw>
+  <app-deposit></app-deposit>
 </section>

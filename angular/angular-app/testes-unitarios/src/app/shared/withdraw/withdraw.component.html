@@ -1,0 +1,9 @@
+<h3>{{ bankService.getSavings | currency }}</h3>
+
+<input type="text" #valueToWithdraw />
+<button
+  (click)="handleClick(valueToWithdraw.value)"
+  [disabled]="!bankService.getSavings"
+>
+  Withdraw
+</button>
