@@ -14,7 +14,9 @@ export class WithdrawComponent {
 
     if (isNaN(value) || !value) return;
 
-    if (this.haveEnoughMoney(value)) this.bankService.makeWithdraw(value);
+    if (!this.haveEnoughMoney(value)) return;
+
+    this.bankService.makeWithdraw(value);
   }
 
   private haveEnoughMoney(number: number): boolean {

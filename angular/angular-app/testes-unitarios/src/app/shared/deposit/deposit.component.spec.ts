@@ -23,4 +23,8 @@ describe('DepositComponent', () => {
   it('handleClick recive empty string', () => {
     expect(component.handleClick('')).toBeUndefined();
   });
+
+  it('handleClick recive valid value', () => {
+    expect(component.handleClick('10')).toBeUndefined();
+  });
 });
