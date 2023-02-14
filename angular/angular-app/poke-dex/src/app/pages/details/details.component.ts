@@ -40,7 +40,7 @@ export class DetailsComponent {
       next: ([pokemon, species]) => {
         this.pokemon = this.createPokemonObjectFromResponses(pokemon, species);
       },
-      error: (err) => {
+      error: () => {
         this.erro = true;
       },
     });
