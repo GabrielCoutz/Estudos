@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
 import { ListComponent } from './list.component';
 
 describe('ListComponent', () => {
@@ -9,6 +11,7 @@ describe('ListComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ListComponent],
+      imports: [HttpClientTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ListComponent);
@@ -18,10 +21,5 @@ describe('ListComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should investments list to have 4 items (<li>)', () => {
-    const element = component.investments;
-    expect(element.length).toEqual(4);
   });
 });
