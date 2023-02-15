@@ -35,4 +35,22 @@ describe('WithdrawComponent', () => {
     const value: string = `${valueInSaving + 1}`;
     expect(component.handleClick(value)).toBeUndefined();
   });
+
+  it('interface - should witdraw button works', () => {
+    const element = fixture.debugElement.nativeElement;
+
+    element.querySelector('#witdrawInput').value = '10';
+    element.querySelector('#witdrawButton').click();
+    fixture.detectChanges();
+
+    const changedValue = dirtyStringToNumber(
+      element.querySelector('#witdrawValue').innerText
+    );
+
+    expect(changedValue).toEqual(valueInSaving - 10);
+  });
 });
+
+export function dirtyStringToNumber(string: string): number {
+  return +string.replace(/([^a-z0-9 ._-]+)/gi, '');
+}

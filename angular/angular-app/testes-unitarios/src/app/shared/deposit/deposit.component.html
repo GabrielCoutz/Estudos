@@ -1,9 +1,15 @@
-<h3>{{ bankService.getWallet | currency }}</h3>
+<h3 id="depositValue">{{ bankService.getWallet | currency }}</h3>
 
-<input type="text" #valueToDeposit [value]="bankService.getWallet || ''" />
+<input
+  type="text"
+  #valueToDeposit
+  [value]="bankService.getWallet || ''"
+  id="depositInput"
+/>
 <button
   (click)="handleClick(valueToDeposit.value)"
   [disabled]="!bankService.getWallet"
+  id="depositButton"
 >
   Deposit
 </button>
