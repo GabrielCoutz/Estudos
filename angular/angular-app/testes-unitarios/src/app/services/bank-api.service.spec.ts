@@ -11,16 +11,12 @@ describe('BankApiService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(BankApiService);
-    savingInitialValue = service.getSavings || 0;
     walletInitialValue = service.getWallet || 0;
+    savingInitialValue = service.getSavings || 0;
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
-  });
-
-  it('should trow a error of sort test', () => {
-    expect(service.makeDeposit(123)).toThrowError('teste');
   });
 
   it('should withdraw works', () => {

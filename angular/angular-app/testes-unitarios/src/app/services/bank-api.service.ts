@@ -21,7 +21,6 @@ export class BankApiService {
   }
 
   makeDeposit(value: number): void {
-    if (value === 123) throw new Error('teste');
     this.savings += value;
     this.wallet -= value;
   }

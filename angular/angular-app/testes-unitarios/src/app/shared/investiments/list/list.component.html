@@ -1,0 +1,15 @@
+<section *ngIf="investments">
+  <hr />
+  <h1>Investments</h1>
+
+  <ul>
+    <li *ngFor="let investment of investments">
+      <div>
+        {{ investment.name }}
+      </div>
+      {{ investment.value | currency }}
+      <br />
+      <br />
+    </li>
+  </ul>
+</section>
