@@ -14,7 +14,6 @@ export class ListComponent {
   ngOnInit(): void {
     this.investmentsApi.getInvestments().subscribe({
       next: (response) => (this.investments = response),
-      error: (erro) => console.log(erro),
     });
   }
 }

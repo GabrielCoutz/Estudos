@@ -6,7 +6,6 @@ import { ListComponent } from './list.component';
 import { ListInvestmentsService } from 'src/app/services/list-investments.service';
 import mockList from 'src/app/services/list-investments.mock';
 import { of } from 'rxjs';
-import { Investments } from '../../model/investments';
 
 describe('ListComponent', () => {
   let component: ListComponent;
@@ -33,6 +32,7 @@ describe('ListComponent', () => {
     spyOn(service, 'getInvestments').and.returnValue(of(mockList));
 
     component.ngOnInit();
+
     fixture.detectChanges();
 
     const investmentsMocked = component.investments;
