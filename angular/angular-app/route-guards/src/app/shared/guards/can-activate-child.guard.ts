@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
-  CanActivate,
+  CanActivateChild,
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
@@ -10,8 +10,8 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class CanActiveGuard implements CanActivate {
-  canActivate(
+export class CanActivateChildGuard implements CanActivateChild {
+  canActivateChild(
     { queryParams }: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ):
@@ -20,9 +20,6 @@ export class CanActiveGuard implements CanActivate {
     | boolean
     | UrlTree {
     const { account, password } = queryParams;
-
-    console.log(queryParams);
-    console.log(state);
 
     if (account === '1' && password === 'teste') return true;
     return false;
