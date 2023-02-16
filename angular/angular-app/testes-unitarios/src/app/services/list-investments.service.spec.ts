@@ -6,7 +6,7 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';
-import { Investments } from '../shared/investiments/model/investments';
+import mockList from './list-investments.mock';
 
 describe('ListInvestmentsService', () => {
   let service: ListInvestmentsService;
@@ -14,25 +14,6 @@ describe('ListInvestmentsService', () => {
   let request: HttpClient;
   const URL =
     'https://raw.githubusercontent.com/troquatte/fake-server/main/investiments-all.json';
-
-  const mockList: Investments[] = [
-    {
-      name: 'Banco 1',
-      value: 100,
-    },
-    {
-      name: 'Banco 2',
-      value: 200,
-    },
-    {
-      name: 'Banco 3',
-      value: 300,
-    },
-    {
-      name: 'Banco 4',
-      value: 400,
-    },
-  ];
 
   beforeEach(() => {
     TestBed.configureTestingModule({ imports: [HttpClientTestingModule] });
@@ -48,5 +29,20 @@ describe('ListInvestmentsService', () => {
 
   afterEach(() => {
     httpTesting.verify();
+  });
+
+  it('should investments list exists', (done) => {
+    service.getInvestments().subscribe({
+      next: (investments) => {
+        expect(investments[0].name).toEqual('Banco 1');
+        expect(investments[0].value).toEqual(100);
+        done();
+      },
+    });
+
+    const req = httpTesting.expectOne(URL);
+    req.flush(mockList);
+
+    expect(req.request.method).toEqual('GET');
   });
 });

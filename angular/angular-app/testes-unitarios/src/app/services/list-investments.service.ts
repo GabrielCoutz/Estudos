@@ -12,7 +12,7 @@ export class ListInvestmentsService {
 
   constructor(private request: HttpClient) {}
 
-  get getInvestments(): Observable<Investments[]> {
+  getInvestments(): Observable<Investments[]> {
     return this.request.get<Investments[]>(this.url);
   }
 }

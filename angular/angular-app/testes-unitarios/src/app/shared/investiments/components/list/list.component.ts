@@ -12,7 +12,7 @@ export class ListComponent {
   investments: Investments[] | undefined;
 
   ngOnInit(): void {
-    this.investmentsApi.getInvestments.subscribe({
+    this.investmentsApi.getInvestments().subscribe({
       next: (response) => (this.investments = response),
       error: (erro) => console.log(erro),
     });
