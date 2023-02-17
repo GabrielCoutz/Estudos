@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
 import { AuthModel } from './Auth/interfaces/auth-model';
+import { ErroModel } from './Auth/interfaces/erro-model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +13,13 @@ export class AuthService {
   constructor(private request: HttpClient) {}
 
   signIn(payload: AuthModel): Observable<AuthModel> {
-    return this.request.post<AuthModel>(`${this.url}/signin`, payload);
+    return this.request.post<AuthModel>(`${this.url}/signin`, payload).pipe(
+      map((res) => res),
+      catchError(({ error }: ErroModel) =>
+        error.message
+          ? throwError(() => error.message)
+          : throwError(() => 'Serviço indisponível no momento.')
+      )
+    );
   }
 }

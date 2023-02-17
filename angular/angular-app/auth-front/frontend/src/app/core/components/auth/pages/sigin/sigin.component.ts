@@ -31,7 +31,7 @@ export class SiginComponent {
     const payload = this.formAuth.value;
     this.authService.signIn(payload).subscribe({
       next: (response) => console.log(response),
-      error: ({ error }) => (this.error = error.message),
+      error: (e: string) => (this.error = e),
     });
   }
 }
