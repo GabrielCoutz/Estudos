@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { catchError, map, Observable, throwError } from 'rxjs';
 import { AuthModel } from './interfaces/auth-model';
 import { ErroModel } from './interfaces/erro-model';
@@ -8,7 +9,7 @@ import { ResponseModel } from './interfaces/response-model';
 import {
   removeTokenFromLocalStorage,
   saveTokenInLocalStorage,
-} from './utils/handleResponse';
+} from './utils/handleToken';
 
 @Injectable({
   providedIn: 'root',
@@ -18,15 +19,15 @@ export class AuthService {
 
   constructor(private request: HttpClient, private router: Router) {}
 
-  private redirect(name: string[]) {
-    this.router.navigate(name);
+  redirectTo(routeName: string[]) {
+    this.router.navigate(routeName);
   }
 
   signIn(payload: AuthModel): Observable<ResponseModel> {
     return this.request.post<ResponseModel>(`${this.url}/signin`, payload).pipe(
       map((res: ResponseModel) => {
         saveTokenInLocalStorage(res.token);
-        this.redirect(['admin']);
+        this.redirectTo(['admin']);
         return res;
       }),
       catchError(({ error }: ErroModel) =>
@@ -39,6 +40,14 @@ export class AuthService {
 
   logOut(): void {
     removeTokenFromLocalStorage();
-    this.redirect(['']);
+    this.redirectTo(['']);
+  }
+
+  isAuthenticated(): boolean {
+    const storedToken = localStorage.getItem('token');
+    if (!storedToken) return false;
+
+    const jwtHelper = new JwtHelperService();
+    return !jwtHelper.isTokenExpired(storedToken);
   }
 }
