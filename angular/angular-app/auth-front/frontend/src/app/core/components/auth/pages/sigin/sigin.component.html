@@ -1,8 +1,8 @@
 <div class="container">
   <img src="/assets/logo.png" alt="Logo" />
 
-  <form>
-    <label for="email">
+  <form [formGroup]="formAuth" (ngSubmit)="submit()">
+    <label>
       <svg
         width="25"
         height="25"
@@ -27,14 +27,14 @@
       </svg>
       <input
         type="email"
-        id="email"
-        name="email"
         required
         placeholder="Email"
+        formControlName="email"
+        autocomplete="email" 
       />
     </label>
 
-    <label for="senha">
+    <label>
       <svg
         width="25"
         height="24"
@@ -59,10 +59,10 @@
       </svg>
       <input
         type="password"
-        id="senha"
-        name="senha"
         required
         placeholder="Senha"
+        formControlName="password"
+        autocomplete="current-password"
       />
     </label>
 
