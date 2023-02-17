@@ -1,0 +1,19 @@
+@import "../../../../../styles/base/variables";
+
+button {
+  margin-top: 24px;
+  font-size: 1.125rem;
+  background-color: $vermelho;
+  color: white;
+  padding: 12px 24px;
+  width: 100%;
+  border-radius: 12px;
+}
+strong {
+  color: $vermelho;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  text-align: center;
+  display: block;
+}
