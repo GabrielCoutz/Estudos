@@ -30,7 +30,7 @@
         required
         placeholder="Email"
         formControlName="email"
-        autocomplete="email" 
+        autocomplete="email"
       />
     </label>
 
@@ -68,5 +68,5 @@
 
     <button>Login</button>
   </form>
-  <span class="erro">errro</span>
+  <span class="erro" *ngIf="error">{{ error }}</span>
 </div>

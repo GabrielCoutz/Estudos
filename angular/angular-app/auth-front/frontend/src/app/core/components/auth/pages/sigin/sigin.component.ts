@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-sigin',
@@ -7,18 +8,30 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./sigin.component.scss'],
 })
 export class SiginComponent {
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService
+  ) {}
 
   public formAuth: FormGroup = this.formBuilder.group({
-    email: ['', [Validators.required, Validators.email]],
+    email: ['teste@gmail.com', [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
   });
+  error: string | undefined;
 
   submit(): void {
+    this.error = '';
+
     const formIsValid = this.formAuth.valid;
+    if (!formIsValid) {
+      this.error = 'Preencha os campos!';
+      return;
+    }
 
-    if (!formIsValid) return;
-
-    console.log(this.formAuth.value);
+    const payload = this.formAuth.value;
+    this.authService.signIn(payload).subscribe({
+      next: (response) => console.log(response),
+      error: ({ error }) => (this.error = error.message),
+    });
   }
 }
