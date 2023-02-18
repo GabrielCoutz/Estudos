@@ -6,9 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "echo 'e aí =)'",
-    "lint": "eslint --fix \"**/*.{ts,tsx}\"",
-    "prepare": "husky install"
+    "test": "ng test",
+    "lint": "eslint --fix \"**/*.{ts,tsx, json}\""
   },
   "config": {
     "commitizen": {

@@ -6,17 +6,9 @@ describe('AppComponent', () => {
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
 			imports: [RouterTestingModule],
-	
-  
-  
-  
-      declarations: [AppComponent],
+			declarations: [AppComponent],
 		}).compileComponents();
-	})
-
-
-
-
+	});
 
 	it('should create the app', () => {
 		const fixture = TestBed.createComponent(AppComponent);
@@ -24,7 +16,7 @@ describe('AppComponent', () => {
 		expect(app).toBeTruthy();
 	});
 
-	it('should have as title "projeto"', () => {
+	it('should have as title projeto', () => {
 		const fixture = TestBed.createComponent(AppComponent);
 		const app = fixture.componentInstance;
 		expect(app.title).toEqual('projeto');
