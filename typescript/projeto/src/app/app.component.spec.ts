@@ -6,9 +6,17 @@ describe('AppComponent', () => {
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
 			imports: [RouterTestingModule],
-			declarations: [AppComponent],
+	
+  
+  
+  
+      declarations: [AppComponent],
 		}).compileComponents();
-	});
+	})
+
+
+
+
 
 	it('should create the app', () => {
 		const fixture = TestBed.createComponent(AppComponent);
