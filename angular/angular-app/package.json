@@ -9,7 +9,7 @@
     "cz-conventional-changelog": "^3.3.0"
   },
   "scripts": {
-    "test": "echo 'xampson'",
+    "test": "echo 'xampson a'",
     "prepare": "husky install"
   },
   "config": {
