@@ -7,6 +7,11 @@
     "test": "echo 'fala ai =)'",
     "prepare": "husky install"
   },
+  "husky": {
+    "hooks": {
+      "pre-commmit": "echo 'olá'"
+    }
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
