@@ -5,7 +5,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "echo 'testee'"
+      "pre-commit": "echo 'testee' && clear"
     }
   },
   "config": {
