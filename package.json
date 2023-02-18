@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo 'começando1' && npm run commit",
+    "test": "echo 'começando' && npm run commit",
     "prepare": "husky install",
     "commit": "git cz --hook"
   },
