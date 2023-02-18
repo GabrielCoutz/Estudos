@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-echo 'começando' && npm run commit || true
+echo 'começando' && npm run commit

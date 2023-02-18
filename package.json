@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo 'começando' && npm run commit",
     "prepare": "husky install",
-    "commit": "git cz"
+    "commit": "git cz --hook"
   },
   "config": {
     "commitizen": {
