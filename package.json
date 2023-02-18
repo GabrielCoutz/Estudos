@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo 'começandoo' && npm run commit",
-    "prepare": "husky install",
-    "commit": "git cz --hook"
+    "test": "echo 'começandoo' && npm run commit"
   },
   "config": {
     "commitizen": {
@@ -27,8 +25,5 @@
   "devDependencies": {
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0"
-  },
-  "dependencies": {
-    "husky": "^8.0.3"
   }
 }
