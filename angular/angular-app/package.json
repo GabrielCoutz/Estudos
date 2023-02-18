@@ -1,8 +1,7 @@
 {
   "devDependencies": {
     "commitizen": "^4.3.0",
-    "cz-conventional-changelog": "^3.3.0",
-    "husky": "^8.0.3"
+    "cz-conventional-changelog": "^3.3.0"
   },
   "scripts": {
     "test": "echo 'xampson a'",
@@ -12,5 +11,8 @@
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "husky": "^8.0.3"
   }
 }

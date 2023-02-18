@@ -1,0 +1,32 @@
+{
+  "name": "estudos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 'começando' && npm run commit",
+    "prepare": "husky install",
+    "commit": "git cz"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GabrielCoutz/Estudos.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GabrielCoutz/Estudos/issues"
+  },
+  "homepage": "https://github.com/GabrielCoutz/Estudos#readme",
+  "devDependencies": {
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^8.0.3"
+  }
+}
