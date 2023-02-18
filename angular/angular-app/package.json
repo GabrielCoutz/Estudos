@@ -3,9 +3,17 @@
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "echo 'terste'"
+    }
+  },
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "husky": "^8.0.3"
   }
 }
