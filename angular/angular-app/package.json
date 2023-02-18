@@ -4,6 +4,11 @@
     "cz-conventional-changelog": "^3.3.0",
     "husky": "^8.0.3"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test"
+    }
+  },
   "scripts": {
     "test": "echo 'xampson a'",
     "prepare": "husky install"
