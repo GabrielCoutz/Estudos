@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { CarroModel } from '../Carro/interface';
 import { ConcessionariaModel, IConcessionaria } from './interface.js';
 
@@ -16,5 +17,9 @@ export default class Concessionaria implements IConcessionaria {
 
 	mostrarListaDeCarros(): CarroModel[] {
 		return this.listaDeCarros;
+	}
+
+	fornecerHoariosDeFuncionamento(): string {
+		return 'xampson';
 	}
 }

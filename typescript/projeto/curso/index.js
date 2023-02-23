@@ -2,7 +2,8 @@
 exports.__esModule = true;
 var model_js_1 = require("./Carro/model.js");
 var model_js_2 = require("./Concessionaria/model.js");
-var model_js_3 = require("./Pessoa/model.js");
+var model_js_3 = require("./Database/model.js");
+var model_js_4 = require("./Pessoa/model.js");
 var carroA = new model_js_1["default"]({
     modelo: 'dodge',
     portas: 4
@@ -20,8 +21,8 @@ var concessionaria = new model_js_2["default"]({
     endereco: 'Av. Paulista',
     listaDeCarros: listaDeCarros
 });
-var cliente = new model_js_3["default"]({
-    carroPreferido: 'dodge',
+var cliente = new model_js_4["default"]({
+    carroPreferido: 'cerato',
     nome: 'João'
 });
 var carroEncontrado = concessionaria
@@ -30,3 +31,8 @@ var carroEncontrado = concessionaria
 if (carroEncontrado)
     cliente.comprarCarro(carroEncontrado);
 console.log(cliente.dizerCarroQueTem());
+// ----------------------------------------------------------------
+var bancoConcessionaria = new model_js_3.Db();
+var bancoPessoa = new model_js_3.Db();
+bancoConcessionaria.inserir(concessionaria);
+bancoPessoa.atualizar(cliente);

@@ -8,4 +8,5 @@ export interface ConcessionariaModel {
 export interface IConcessionaria {
 	fornecerEndereco(): string;
 	mostrarListaDeCarros(): CarroModel[];
+	fornecerHoariosDeFuncionamento(): string;
 }

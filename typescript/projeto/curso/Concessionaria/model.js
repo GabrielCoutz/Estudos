@@ -13,6 +13,9 @@ var Concessionaria = /** @class */ (function () {
     Concessionaria.prototype.mostrarListaDeCarros = function () {
         return this.listaDeCarros;
     };
+    Concessionaria.prototype.fornecerHoariosDeFuncionamento = function () {
+        return 'xampson';
+    };
     return Concessionaria;
 }());
 exports["default"] = Concessionaria;

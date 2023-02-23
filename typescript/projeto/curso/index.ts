@@ -1,6 +1,8 @@
 import { CarroModel } from './Carro/interface.js';
 import Carro from './Carro/model.js';
+
 import Concessionaria from './Concessionaria/model.js';
+import { Db } from './Database/model.js';
 import Pessoa from './Pessoa/model.js';
 
 const carroA = new Carro({
@@ -24,7 +26,7 @@ const concessionaria = new Concessionaria({
 });
 
 const cliente = new Pessoa({
-	carroPreferido: 'dodge',
+	carroPreferido: 'cerato',
 	nome: 'João',
 });
 
@@ -35,3 +37,11 @@ const carroEncontrado = concessionaria
 if (carroEncontrado) cliente.comprarCarro(carroEncontrado);
 
 console.log(cliente.dizerCarroQueTem());
+
+// ----------------------------------------------------------------
+
+const bancoConcessionaria: Db<Concessionaria> = new Db();
+const bancoPessoa: Db<Pessoa> = new Db();
+
+bancoConcessionaria.inserir(concessionaria);
+bancoPessoa.atualizar(cliente);
