@@ -8,6 +8,7 @@ import { TopoComponent } from './shared/topo/topo.component';
 import { PainelComponent } from './shared/painel/painel.component';
 import { TentativasComponent } from './shared/tentativas/tentativas.component';
 import { ProgressoComponent } from './shared/progresso/progresso.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
 	declarations: [
@@ -17,7 +18,7 @@ import { ProgressoComponent } from './shared/progresso/progresso.component';
 		TentativasComponent,
 		ProgressoComponent,
 	],
-	imports: [BrowserModule, AppRoutingModule],
+	imports: [BrowserModule, AppRoutingModule, FormsModule],
 	providers: [],
 	bootstrap: [AppComponent],
 })

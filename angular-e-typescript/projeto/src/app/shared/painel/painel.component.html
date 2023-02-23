@@ -1,4 +1,5 @@
 <div class="container bg-light mt-5 p-4 pt-2">
+  {{resposta}}
   <div class="row">
     <div class="col-sm-6">
       <app-progresso></app-progresso>
@@ -17,13 +18,13 @@
     </div>
 
     <div class="mb-3">
-      <textarea class="form-control" rows="3"></textarea>
+      <textarea class="form-control" rows="3" [(ngModel)]="resposta"></textarea>
     </div>
   </div>
 
   <div class="row">
     <div class="col d-flex justify-content-end">
-      <button class="btn btn-primary">Enviar</button>
+      <button class="btn btn-primary" (click)="verifyAnswer()">Enviar</button>
     </div>
   </div>
 </div>

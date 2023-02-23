@@ -5,4 +5,6 @@ import { Component } from '@angular/core';
 	templateUrl: './topo.component.html',
 	styleUrls: ['./topo.component.scss'],
 })
-export class TopoComponent {}
+export class TopoComponent {
+	titulo = 'Angular app';
+}
