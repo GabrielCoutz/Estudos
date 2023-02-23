@@ -1,21 +1,23 @@
 import { Router } from 'express';
 
+import { MethodNotAllowedError } from '../../helpers/ApiErrors.js';
 import {
   deleteUser,
   getUser,
-  getUsers,
   createUser,
   updateUser,
 } from './userControler.js';
 
 export const userRouter = Router();
 
-userRouter.get('/', getUsers);
-
 userRouter.post('/', createUser);
 
-userRouter.get('/:id', getUser);
+userRouter.get(['/:id', '/'], getUser);
 
-userRouter.delete('/:id', deleteUser);
+userRouter.delete(['/:id', '/'], deleteUser);
 
-userRouter.patch('/:id', updateUser);
+userRouter.patch(['/:id', '/'], updateUser);
+
+userRouter.put('', () => {
+  throw new MethodNotAllowedError();
+});
