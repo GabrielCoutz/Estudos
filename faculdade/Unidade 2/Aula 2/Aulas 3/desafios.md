@@ -1,3 +1,6 @@
+## Operações e expressões
+
+```c
 #include <stdio.h> 
 #include <ctype.h>
 
@@ -24,3 +27,4 @@ main() {
     printf("\nNome em maiusculo: %s", nome_maiusculo);
     printf("\nNome em minusculo: %s", nome_minusculo);
 }
+```
