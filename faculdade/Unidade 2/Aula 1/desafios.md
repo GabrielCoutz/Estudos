@@ -1,3 +1,6 @@
+## Tomada de decisões
+
+```c
 #include <stdio.h>
 
 main() {
@@ -36,3 +39,4 @@ main() {
     printf("\n Desconto IR: R$ %.2f", desconto_ir);
     printf("\n Salario liquido: R$ %.2f", salario_liquido);
 }
+```
