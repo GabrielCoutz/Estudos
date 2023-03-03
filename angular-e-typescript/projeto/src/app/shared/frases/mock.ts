@@ -7,7 +7,7 @@ export const frases: FraseModel[] = [
 	},
 	{
 		fraseEng: 'I watch tv',
-		frasePt: 'eu assito tv',
+		frasePt: 'eu assisto tv',
 	},
 	{
 		fraseEng: 'How are you?',

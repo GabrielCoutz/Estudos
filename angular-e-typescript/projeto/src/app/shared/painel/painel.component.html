@@ -2,11 +2,11 @@
   {{resposta}}
   <div class="row">
     <div class="col-sm-6">
-      <app-progresso></app-progresso>
+      <app-progresso [progresso]="progresso"></app-progresso>
     </div>
     <div class="col-sm-6">
       <div class="d-flex justify-content-end">
-        <app-tentativas></app-tentativas>
+        <app-tentativas [tentativas]="tentativas"></app-tentativas>
       </div>
     </div>
   </div>
@@ -14,17 +14,16 @@
   <div class="row">
     <div class="col">
       <h6>Traduza a frase:</h6>
-      <p>How are you?</p>
+      <p>{{rodadaFrase.fraseEng}}</p>
     </div>
 
     <div class="mb-3">
-      <textarea class="form-control" rows="3" [(ngModel)]="resposta"></textarea>
+      <input class="form-control" rows="3" name="resposta" [(ngModel)]="resposta" (keydown.enter)="verifyAnswer()" />
     </div>
-  </div>
-
-  <div class="row">
     <div class="col d-flex justify-content-end">
       <button class="btn btn-primary" (click)="verifyAnswer()">Enviar</button>
     </div>
+
+
   </div>
 </div>

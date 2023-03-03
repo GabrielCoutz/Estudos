@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Coracao } from './coracao.model';
 
 @Component({
 	selector: 'app-tentativas',
@@ -6,6 +7,26 @@ import { Component } from '@angular/core';
 	styleUrls: ['./tentativas.component.scss'],
 })
 export class TentativasComponent {
-	coracaoVazio = 'assets/coracao_vazio.png';
-	coracaoCheio = 'assets/coracao_cheio.png';
+	coracoes: Coracao[] = [
+		new Coracao(true),
+		new Coracao(true),
+		new Coracao(true),
+	];
+	@Input() tentativas = 0;
+
+	ngOnChanges(): void {
+		console.log(this.tentativas);
+		if (this.tentativas !== this.coracoesRestantes) this.removeCoracao();
+	}
+
+	removeCoracao() {
+		this.coracoes[this.tentativas].cheio = false;
+	}
+
+	get coracoesRestantes(): number {
+		return this.coracoes.reduce((acc, item) => {
+			if (item.cheio) acc++;
+			return acc;
+		}, 0);
+	}
 }
