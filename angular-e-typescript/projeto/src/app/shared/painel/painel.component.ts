@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FraseModel } from '../frases/index.model';
 import { frases } from '../frases/mock';
 import { TentativasComponent } from '../tentativas/tentativas.component';
@@ -18,19 +18,22 @@ export class PainelComponent {
 
 	progresso = 0;
 	tentativas = new TentativasComponent().coracoesRestantes;
+	@Output() encerrarJogo: EventEmitter<string> = new EventEmitter();
 
 	verifyAnswer(): void {
 		const correctAnswer =
 			this.resposta.toLowerCase() === this.rodadaFrase.frasePt;
 
-		if (this.tentativas - 1 === -1) return console.log('acabou');
+		if (this.tentativas - 1 === -1)
+			return this.encerrarJogo.emit('Infelizmente suas vidas acabaram =(');
 
 		if (!correctAnswer) {
 			this.tentativas--;
 			return;
 		}
 
-		if (this.rodada === this.limite) return console.log('parou');
+		if (this.rodada === this.limite)
+			return this.encerrarJogo.emit('Parabéns! Você ganhou!');
 
 		this.atualizarRodada();
 		this.progresso = (this.rodada / this.frases.length) * 100;

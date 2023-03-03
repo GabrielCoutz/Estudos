@@ -15,7 +15,6 @@ export class TentativasComponent {
 	@Input() tentativas = 0;
 
 	ngOnChanges(): void {
-		console.log(this.tentativas);
 		if (this.tentativas !== this.coracoesRestantes) this.removeCoracao();
 	}
 

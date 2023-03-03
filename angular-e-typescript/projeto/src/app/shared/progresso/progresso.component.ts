@@ -7,4 +7,8 @@ import { Component, Input } from '@angular/core';
 })
 export class ProgressoComponent {
 	@Input() progresso = 0;
+
+	ngOnchanges() {
+		console.log(this.progresso);
+	}
 }
