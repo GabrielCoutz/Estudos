@@ -1,6 +1,7 @@
 {
   "name": "projeto",
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -25,7 +26,9 @@
     "@angular/platform-browser-dynamic": "^15.1.0",
     "@angular/router": "^15.1.0",
     "bootstrap": "^5.3.0-alpha1",
+    "jquery": "^3.6.3",
     "rxjs": "~7.8.0",
+    "tether": "^2.0.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
   },

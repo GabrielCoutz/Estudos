@@ -1,12 +1,4 @@
-<app-topo></app-topo>
-
-<app-painel (encerrarJogo)="encerrarJogo($event)" *ngIf="jogoEmAndamento; else fimDeJogo"></app-painel>
-
-<ng-template #fimDeJogo>
-  <div class="text-center mt-5">
-    <h1>{{mensagem}}</h1>
-    <button (click)="reiniciar()">Reiniciar</button>
-  </div>
-</ng-template>
-
+<app-header></app-header>
+<app-home></app-home>
+<app-footer></app-footer>
 <router-outlet></router-outlet>

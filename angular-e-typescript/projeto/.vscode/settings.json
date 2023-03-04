@@ -19,7 +19,9 @@
     "**/dist": true,
     "dist": true,
     "**/package-lock.json": true,
-    "package-lock.json": true
+    "package-lock.json": true,
+    "**/.vscode": true,
+    ".vscode": true
   },
   "explorerExclude.backup": {}
 }
