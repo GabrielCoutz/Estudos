@@ -8,10 +8,12 @@ import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { RestaurantesComponent } from './restaurantes/restaurantes.component';
+import { DiversaoComponent } from './diversao/diversao.component'
 
 @NgModule({
-	declarations: [AppComponent, HeaderComponent, HomeComponent, FooterComponent],
+	declarations: [AppComponent, HeaderComponent, HomeComponent, FooterComponent, RestaurantesComponent, DiversaoComponent],
 	imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
 	providers: [],
 	bootstrap: [AppComponent],

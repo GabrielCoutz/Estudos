@@ -9,8 +9,10 @@ import { OfertasModel } from './interface/ofertas-model';
 export class OfertasService {
 	constructor(private httpRequest: HttpClient){}
 
-	getOfertas(): Observable<OfertasModel[]> {
-		return this.httpRequest.get<OfertasModel[]>('http://localhost:3000/ofertas')
+	getOfertas(filtro?: {destaque: string}): Observable<OfertasModel[]> {
+		const params = `?destaque=${filtro?.destaque}`
+
+		return this.httpRequest.get<OfertasModel[]>(`http://localhost:3000/ofertas${filtro ? params : ''}`)
 
 	}
 }
