@@ -7,12 +7,19 @@ import { OfertasModel } from './interface/ofertas-model';
 	providedIn: 'root',
 })
 export class OfertasService {
-	constructor(private httpRequest: HttpClient){}
+	constructor(private httpRequest: HttpClient) {}
 
-	getOfertas(filtro?: {destaque: string}): Observable<OfertasModel[]> {
-		const params = `?destaque=${filtro?.destaque}`
+	getOfertas(): Observable<OfertasModel[]> {
+		return this.httpRequest.get<OfertasModel[]>(
+			'http://localhost:3000/ofertas'
+		);
+	}
 
-		return this.httpRequest.get<OfertasModel[]>(`http://localhost:3000/ofertas${filtro ? params : ''}`)
-
+	getOfertasPorCategoria(
+		categoria: 'diversao' | 'restaurante'
+	): Observable<OfertasModel[]> {
+		return this.httpRequest.get<OfertasModel[]>(
+			`http://localhost:3000/ofertas?categoria=${categoria}`
+		);
 	}
 }

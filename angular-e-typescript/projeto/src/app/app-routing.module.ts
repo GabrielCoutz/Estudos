@@ -11,12 +11,12 @@ const routes: Routes = [
 	},
 	{
 		path: 'restaurantes',
-		component: RestaurantesComponent
+		component: RestaurantesComponent,
 	},
 	{
 		path: 'diversao',
-		component: DiversaoComponent
-	}
+		component: DiversaoComponent,
+	},
 ];
 
 @NgModule({
