@@ -13,7 +13,6 @@ export class HomeComponent {
 	ofertas: OfertasModel[] = [];
 
 	ngOnInit() {
-		this.ofertas = this.ofertasService.getOfertas();
-		console.log(this.ofertas);
+		this.ofertasService.getOfertas().subscribe(item => this.ofertas = item);
 	}
 }

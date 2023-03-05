@@ -8,10 +8,11 @@ import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
 	declarations: [AppComponent, HeaderComponent, HomeComponent, FooterComponent],
-	imports: [BrowserModule, AppRoutingModule, FormsModule],
+	imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
 	providers: [],
 	bootstrap: [AppComponent],
 })
