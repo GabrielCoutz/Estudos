@@ -47,7 +47,7 @@
       ]
     },
     {
-      "id": 4,
+      "id": 3,
       "categoria": "diversao",
       "titulo": "Estância das águas",
       "descricao_oferta": "Diversão garantida com piscinas, trilhas e muito mais.",
@@ -66,12 +66,6 @@
         },
         {
           "url": "/assets/ofertas/3/img4.jpg"
-        },
-        {
-          "url": "/assets/ofertas/3/img5.jpg"
-        },
-        {
-          "url": "/assets/ofertas/3/img6.jpg"
         }
       ]
     }

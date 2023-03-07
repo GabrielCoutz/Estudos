@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { RestaurantesComponent } from './restaurantes/restaurantes.component';
 import { DiversaoComponent } from './diversao/diversao.component';
 import { OfertaComponent } from './oferta/oferta.component';
+import { ComoUsarComponent } from './oferta/components/como-usar/como-usar.component';
+import { OndeFicaComponent } from './oferta/components/onde-fica/onde-fica.component';
 
 @NgModule({
 	declarations: [
@@ -21,7 +23,9 @@ import { OfertaComponent } from './oferta/oferta.component';
 		FooterComponent,
 		RestaurantesComponent,
 		DiversaoComponent,
-  OfertaComponent,
+		OfertaComponent,
+		ComoUsarComponent,
+		OndeFicaComponent,
 	],
 	imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
 	providers: [],

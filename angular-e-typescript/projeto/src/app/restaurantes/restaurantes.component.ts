@@ -14,10 +14,7 @@ export class RestaurantesComponent {
 	ngOnInit() {
 		this.ofertasService.getOfertasPorCategoria('restaurante').subscribe({
 			error: (err) => console.log(err),
-			next: (r) => {
-				console.log(r);
-				this.restaurantes = r;
-			},
+			next: (r) => (this.restaurantes = r),
 		});
 	}
 }

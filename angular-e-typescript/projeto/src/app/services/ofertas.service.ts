@@ -8,18 +8,21 @@ import { OfertasModel } from './interface/ofertas-model';
 })
 export class OfertasService {
 	constructor(private httpRequest: HttpClient) {}
+	private baseUrl = 'http://localhost:3000/ofertas';
 
 	getOfertas(): Observable<OfertasModel[]> {
-		return this.httpRequest.get<OfertasModel[]>(
-			'http://localhost:3000/ofertas'
-		);
+		return this.httpRequest.get<OfertasModel[]>(this.baseUrl);
 	}
 
 	getOfertasPorCategoria(
 		categoria: 'diversao' | 'restaurante'
 	): Observable<OfertasModel[]> {
 		return this.httpRequest.get<OfertasModel[]>(
-			`http://localhost:3000/ofertas?categoria=${categoria}`
+			`${this.baseUrl}?categoria=${categoria}`
 		);
+	}
+
+	getOferta(id: string): Observable<OfertasModel> {
+		return this.httpRequest.get<OfertasModel>(`${this.baseUrl}/${id}`);
 	}
 }
