@@ -5,4 +5,8 @@ import { Component } from '@angular/core';
 	templateUrl: './header.component.html',
 	styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+	pesquisa(value: string) {
+		console.log(value);
+	}
+}

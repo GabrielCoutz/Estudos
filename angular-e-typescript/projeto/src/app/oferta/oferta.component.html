@@ -13,7 +13,7 @@
           <img [src]="oferta.imagens[0].url" />
         </div>
 
-        <ul class="thumbnails">
+        <ul class="thumbnails list-unstyled d-flex flex-wrap">
           <li *ngFor="let imagem of oferta.imagens">
             <img [src]="imagem.url" />
           </li>
@@ -47,7 +47,7 @@
   </div>
   <div class="row">
     <div class="col">
-      <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <ul class="nav nav-tabs list-unstyled" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
           <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
             type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Como usar?</button>
