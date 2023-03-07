@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { OfertasService } from '../services/ofertas.service';
+import { OfertasModel } from '../services/interface/ofertas-model';
+import { Observable } from 'rxjs';
 
 @Component({
 	selector: 'app-header',
@@ -6,7 +9,13 @@ import { Component } from '@angular/core';
 	styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
+	constructor(private ofertasService: OfertasService) {}
+
+	resposta: Observable<OfertasModel[]> | undefined;
+
 	pesquisa(value: string) {
-		console.log(value);
+		this.resposta = this.ofertasService.pesquisarOfertas(value);
+
+		this.resposta.subscribe((r) => console.log(r));
 	}
 }

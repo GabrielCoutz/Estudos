@@ -25,4 +25,10 @@ export class OfertasService {
 	getOferta(id: string): Observable<OfertasModel> {
 		return this.httpRequest.get<OfertasModel>(`${this.baseUrl}/${id}`);
 	}
+
+	pesquisarOfertas(termo: string): Observable<OfertasModel[]> {
+		return this.httpRequest.get<OfertasModel[]>(
+			`${this.baseUrl}?descricao_oferta_like=${termo}`
+		);
+	}
 }
