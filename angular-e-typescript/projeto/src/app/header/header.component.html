@@ -9,8 +9,10 @@
         </div>
         <div class="col-md-6 position-relative">
           <input type="text" class="form-control" #input placeholder="Xampson" (keyup)="pesquisa(input.value)">
-          <ul class="list-group position-absolute" *ngIf="resposta">
-            <li class="list-group-item" *ngFor="let item of resposta">{{item}}</li>
+          <ul class="list-group position-absolute">
+            <li class="list-group-item" *ngFor="let item of resposta | async">
+              <a [routerLink]="['oferta', item.id]" (click)="limparPesquisa(input)">{{item.descricao_oferta}}</a>
+            </li>
           </ul>
         </div>
 

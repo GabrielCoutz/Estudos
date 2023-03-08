@@ -16,14 +16,11 @@ export class HeaderComponent {
 
 	resposta: Observable<OfertasModel[]> | undefined;
 
-	ngOnInit() {
+	ngOnInit(): void {
 		this.resposta = this.subject.pipe(
-			debounceTime(2000),
+			// debounceTime(2000),
 			switchMap((termo: string) => this.ofertasService.pesquisarOfertas(termo)),
-			catchError((err) => {
-				console.log(err);
-				return [];
-			})
+			catchError(() => [])
 		);
 		this.resposta.subscribe({
 			next: (ofertas) => console.log(ofertas),
@@ -31,9 +28,11 @@ export class HeaderComponent {
 		});
 	}
 
-	pesquisa(value: string) {
-		console.log(value);
-
+	pesquisa(value: string): void {
 		if (value.trim()) this.subject.next(value.trim());
+	}
+
+	limparPesquisa(pesquisa: HTMLInputElement): void {
+		pesquisa.value = '';
 	}
 }

@@ -14,6 +14,11 @@ import { DiversaoComponent } from './diversao/diversao.component';
 import { OfertaComponent } from './oferta/oferta.component';
 import { ComoUsarComponent } from './oferta/components/como-usar/como-usar.component';
 import { OndeFicaComponent } from './oferta/components/onde-fica/onde-fica.component';
+import { DEFAULT_CURRENCY_CODE, LOCALE_ID } from '@angular/core';
+import ptBr from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(ptBr);
 
 @NgModule({
 	declarations: [
@@ -28,7 +33,10 @@ import { OndeFicaComponent } from './oferta/components/onde-fica/onde-fica.compo
 		OndeFicaComponent,
 	],
 	imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
-	providers: [],
+	providers: [
+		{ provide: LOCALE_ID, useValue: 'pt' },
+		{ provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' },
+	],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

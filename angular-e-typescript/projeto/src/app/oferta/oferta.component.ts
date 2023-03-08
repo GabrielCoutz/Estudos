@@ -17,10 +17,15 @@ export class OfertaComponent {
 	oferta: OfertasModel | undefined;
 
 	ngOnInit() {
-		const { id } = this.route.snapshot.params;
-		this.ofertasService.getOferta(id).subscribe({
-			error: (err) => console.log(err),
-			next: (r) => (this.oferta = r),
+		this.route.paramMap.subscribe((params) => {
+			const id = params.get('id');
+
+			if (!id) return;
+
+			this.ofertasService.getOferta(id).subscribe({
+				error: (err) => console.log(err),
+				next: (r) => (this.oferta = r),
+			});
 		});
 	}
 }
