@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { OfertasService } from '../services/ofertas.service';
 import { OfertasModel } from '../services/interface/ofertas-model';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { debounceTime, switchMap, catchError } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-header',
@@ -9,13 +10,30 @@ import { Observable } from 'rxjs';
 	styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
+	private subject: Subject<string> = new Subject<string>();
+
 	constructor(private ofertasService: OfertasService) {}
 
 	resposta: Observable<OfertasModel[]> | undefined;
 
-	pesquisa(value: string) {
-		this.resposta = this.ofertasService.pesquisarOfertas(value);
+	ngOnInit() {
+		this.resposta = this.subject.pipe(
+			debounceTime(2000),
+			switchMap((termo: string) => this.ofertasService.pesquisarOfertas(termo)),
+			catchError((err) => {
+				console.log(err);
+				return [];
+			})
+		);
+		this.resposta.subscribe({
+			next: (ofertas) => console.log(ofertas),
+			error: (err) => console.log(err),
+		});
+	}
 
-		this.resposta.subscribe((r) => console.log(r));
+	pesquisa(value: string) {
+		console.log(value);
+
+		if (value.trim()) this.subject.next(value.trim());
 	}
 }

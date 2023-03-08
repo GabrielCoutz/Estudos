@@ -7,9 +7,13 @@
             <img src="/assets/logo.png" />
           </a>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 position-relative">
           <input type="text" class="form-control" #input placeholder="Xampson" (keyup)="pesquisa(input.value)">
+          <ul class="list-group position-absolute" *ngIf="resposta">
+            <li class="list-group-item" *ngFor="let item of resposta">{{item}}</li>
+          </ul>
         </div>
+
         <div class="col-md-2">
           <img src="/assets/carrinho.png" />
         </div>
