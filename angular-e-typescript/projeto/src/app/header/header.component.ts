@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { OfertasService } from '../services/ofertas.service';
 import { OfertasModel } from '../services/interface/ofertas-model';
 import { Observable, Subject } from 'rxjs';
-import { debounceTime, switchMap, catchError } from 'rxjs/operators';
+import { switchMap, catchError } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-header',

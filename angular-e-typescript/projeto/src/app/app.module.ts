@@ -17,6 +17,7 @@ import { OndeFicaComponent } from './oferta/components/onde-fica/onde-fica.compo
 import { DEFAULT_CURRENCY_CODE, LOCALE_ID } from '@angular/core';
 import ptBr from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { OrdemCompraComponent } from './ordem-compra/ordem-compra.component';
 
 registerLocaleData(ptBr);
 
@@ -31,6 +32,7 @@ registerLocaleData(ptBr);
 		OfertaComponent,
 		ComoUsarComponent,
 		OndeFicaComponent,
+  OrdemCompraComponent,
 	],
 	imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
 	providers: [
