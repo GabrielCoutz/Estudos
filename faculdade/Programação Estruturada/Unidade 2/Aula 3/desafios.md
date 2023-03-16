@@ -1,3 +1,6 @@
+## Filas
+
+```c
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -101,3 +104,4 @@ int main() {
     int clientesEmEsperaMaxima = calcularClientesEmEsperaMaxima(filaTempoEntrada, filaTempoAtendimento);
     printf("\nHoje, %d clientes(s) esperarao mais de 20 minutos na fila", clientesEmEsperaMaxima);
 }
+```

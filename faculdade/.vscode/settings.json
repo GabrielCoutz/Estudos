@@ -3,5 +3,6 @@
     "*.jsx": "javascriptreact",
     "*.tsx": "javascriptreact",
     "stdbool.h": "c"
-  }
+  },
+  "C_Cpp.errorSquiggles": "disabled"
 }
