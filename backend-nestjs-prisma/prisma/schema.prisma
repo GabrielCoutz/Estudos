@@ -34,7 +34,7 @@ model Product {
 
   category Category[]
 
-  owner   User   @relation(fields: [ownerId], references: [id])
+  owner   User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
   ownerId String @unique
 
   @@map("products")
@@ -42,7 +42,7 @@ model Product {
 
 model Category {
   id   String @id @default(uuid())
-  name String
+  name String @unique
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt

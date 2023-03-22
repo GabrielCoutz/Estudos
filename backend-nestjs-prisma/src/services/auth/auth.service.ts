@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { UserRepository } from 'src/modules/repository/User/UserRepository';
+import { UserRepository } from 'src/modules/repository/User/user-repository';
 import { PasswordService } from '../password/password.service';
 
 @Injectable()
@@ -14,7 +14,7 @@ export class AuthService {
   async validateUser(email: string, password: string) {
     const user = await this.userRepository.findOne({ email });
 
-    if (!(await this.passwordSerice.compare(password, user.password)))
+    if (!user || !(await this.passwordSerice.compare(password, user.password)))
       return null;
 
     return { id: user.id };

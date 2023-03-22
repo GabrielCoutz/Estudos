@@ -5,7 +5,7 @@ import {
   ConflictException,
 } from '@nestjs/common';
 
-import { UserRepository } from 'src/modules/repository/User/UserRepository';
+import { UserRepository } from 'src/modules/repository/User/user-repository';
 import { PasswordService } from 'src/services/password/password.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import {

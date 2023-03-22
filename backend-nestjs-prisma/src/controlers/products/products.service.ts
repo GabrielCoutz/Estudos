@@ -1,93 +1,70 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { PrismaService } from 'src/database/prisma.service';
-import { CreateProductDto } from './dto/create-product.dto';
-import { UpdateProductDto } from './dto/update-product.dto';
+import { ProductRepository } from 'src/modules/repository/Product/product-repository';
+import { CreateProductInput } from './dto/create-product.dto';
+import { UpdateProductInput } from './dto/update-product.dto';
 import { defaultProductSelect } from './utils';
 
 @Injectable()
 export class ProductsService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly productRepository: ProductRepository) {}
 
-  async create({ name, ownerId, price }: CreateProductDto) {
-    const ownerExists = await this.prisma.user.count({
-      where: {
-        id: ownerId,
-      },
-    });
-
-    if (!ownerExists)
-      throw new HttpException('Owner not found', HttpStatus.NOT_FOUND);
-
-    const product = await this.prisma.product.create({
-      data: {
-        name,
-        price,
-        owner: {
-          connect: {
-            id: ownerId,
-          },
-        },
-      },
-      select: {
-        id: true,
-        name: true,
-        created_at: true,
-      },
-    });
+  async create(userId: string, payload: CreateProductInput) {
+    const createProductDto = {
+      name: payload.name,
+      ownerId: userId,
+      price: payload.price,
+      category: payload.category,
+    };
+    const product = await this.productRepository.create(createProductDto);
 
     return product;
   }
 
   async findAll() {
-    const products = await this.prisma.product.findMany({
-      select: defaultProductSelect,
-    });
+    const products = await this.productRepository.findAll();
 
     return products;
   }
 
   async findOne(id: string) {
-    const product = await this.prisma.product.findUnique({
-      where: {
-        id,
-      },
-      select: defaultProductSelect,
-    });
+    const product = await this.productRepository.findOne(id);
 
-    if (!product)
-      throw new HttpException('Product not found', HttpStatus.NOT_FOUND);
+    if (!product) throw new NotFoundException('Product not found');
 
     return product;
   }
 
-  async update(id: string, { name, price }: UpdateProductDto) {
-    const product = await this.prisma.product.update({
-      data: {
-        name,
-        price,
-      },
-      where: {
-        id,
-      },
-      select: defaultProductSelect,
-    });
+  async update(
+    id: string,
+    { name, price, category }: Partial<UpdateProductInput>,
+  ) {
+    const updateProductDto = {
+      category,
+      name,
+      price,
+    };
 
-    if (!product)
-      throw new HttpException('Product not found', HttpStatus.NOT_FOUND);
+    const product = await this.productRepository.update(id, updateProductDto);
 
     return product;
   }
 
-  async remove(id: string) {
-    const product = await this.prisma.product.count({
-      where: { id },
-    });
+  // async remove(id: string) {
+  //   const product = await this.prisma.product.count({
+  //     where: { id },
+  //   });
 
-    if (!product)
-      throw new HttpException('Product not found', HttpStatus.NOT_FOUND);
+  //   if (!product)
+  //     throw new HttpException('Product not found', HttpStatus.NOT_FOUND);
 
-    await this.prisma.product.delete({
-      where: { id },
-    });
-  }
+  //   await this.prisma.product.delete({
+  //     where: { id },
+  //   });
+  // }
 }
