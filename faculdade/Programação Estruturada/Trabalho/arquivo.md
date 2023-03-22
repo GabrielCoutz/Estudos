@@ -8,7 +8,6 @@ Algoritmo "VerificaIdade"
 Var
    idade: inteiro
 
-
 Inicio
    escreval("Insira sua idade:")
    leia(idade)

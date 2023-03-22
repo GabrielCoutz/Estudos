@@ -10,7 +10,8 @@ export const middlewareError = (
 ) => {
   const status = error.status ?? 500;
   const message = error.message ?? 'Internal Server Error';
+  const statusTitle = error.errorName ?? 'Error';
 
-  res.status(status).json({ message });
+  res.status(status).json({ message, statusTitle });
   next();
 };

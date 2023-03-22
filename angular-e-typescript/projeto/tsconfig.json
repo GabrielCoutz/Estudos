@@ -1,3 +1,4 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -5,9 +6,6 @@
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "module": "ESNext",
-    "esModuleInterop": true,
-    "moduleResolution": "Node",
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
@@ -16,8 +14,10 @@
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
+    "moduleResolution": "node",
     "importHelpers": true,
     "target": "ES2022",
+    "module": "ES2022",
     "useDefineForClassFields": false,
     "lib": [
       "ES2022",

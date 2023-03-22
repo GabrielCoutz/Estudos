@@ -1,49 +1,35 @@
 import bcrypt from 'bcrypt';
 
-import {
-  BadRequestError,
-  UnauthorizedError,
-} from '../../../helpers/ApiErrors.js';
+import { UnauthorizedError } from '../../../helpers/ApiErrors.js';
+import { existValueIn } from '../../../helpers/validators.js';
 import { findUserBy } from '../../user/Utils/userFunctions.js';
 
-interface LoginPayload {
-  email: string;
-  password: string;
-}
-
-const loginFieldIsEmpty = ([key, value]: string[]): boolean => !!(key && value);
-
-const loginPayloadIsEmpty = (payload: object): payload is LoginPayload => {
-  const loginFields = ['password', 'email'];
-
-  const allLoginFieldsWereSend = loginFields.every((field) => field in payload);
-  if (!allLoginFieldsWereSend) return false;
-
-  const fields = Object.entries(payload);
-  return fields.every(loginFieldIsEmpty);
-};
-
-export const checkBodySended = (body: object): void => {
-  if (!loginPayloadIsEmpty(body))
-    throw new BadRequestError('Some fields were not sent');
-};
-
-export const checkPassword = async (
+/**
+ * Recebe a senha do usuário, criptofraga, e compara com a que já está no banco de dados.
+ * @param password Senha enviada pelo usuário
+ * @param passwordHash Senha criptografada guardada no banco
+ * @returns Promise<true | false>
+ */
+export const comparePasswords = async (
   password: string,
   passwordHash: string,
-): Promise<void> => {
-  const passwordIsValid = await bcrypt.compare(password, passwordHash);
+): Promise<boolean> => await bcrypt.compare(password, passwordHash);
 
-  if (!passwordIsValid) throw new UnauthorizedError('Invalid credentials.');
-};
-
+/**
+ * Recebe as credenciais do usuário e verifica se são iguais às do banco. Se sim continua o código, se não, um erro é disparado.
+ * @param email Email enviado pelo usuário
+ * @param password Senha enviada pelo usuário
+ */
 export const checkCredentials = async (
   email: string,
   password: string,
 ): Promise<void> => {
   const user = findUserBy('email', email);
 
-  await checkPassword(password, user.passwordHash);
+  if (!existValueIn(user)) throw new UnauthorizedError('Invalid credentials');
 
-  if (user.email !== email) throw new UnauthorizedError('Invalid credentials.');
+  const passwordIsValid = await comparePasswords(password, user.passwordHash);
+
+  if (user.email !== email || !passwordIsValid)
+    throw new UnauthorizedError('Invalid credentials.');
 };

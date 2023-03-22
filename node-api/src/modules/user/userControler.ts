@@ -2,32 +2,52 @@ import bcrypt from 'bcrypt';
 import { randomUUID } from 'crypto';
 import { Request, Response } from 'express';
 
-import { IUser } from './Interface/IUser.js';
-import { getIdFromHttpCookie } from './Utils/Token.js';
 import {
-  checkAllUserFieldsRecived,
-  checkEmailAlreadyInUse,
+  BadRequestError,
+  ConflictError,
+  NotFoundError,
+} from '../../helpers/ApiErrors.js';
+import {
+  allFieldsSendedFrom,
+  emaillAreadyInUse,
+  existValueIn,
+} from '../../helpers/validators.js';
+import { IUser } from './Interface/IUser.js';
+import {
   findUserBy,
   refineUserObject,
   updateUserInfo,
   usersMemory,
-  getIdFromParam,
-  checkUserIsOwner,
+  handleRequest,
 } from './Utils/userFunctions.js';
 
 export const getUser = async (req: Request, res: Response) => {
-  const idFromParam = getIdFromParam(req.params.id);
+  const idFromParam = req.params.id;
+
+  if (!existValueIn(idFromParam))
+    throw new BadRequestError('You must provide an id in request parameters');
 
   const user = findUserBy('id', idFromParam);
+
+  if (!existValueIn(user)) throw new NotFoundError('User not found');
 
   res.status(200).json(refineUserObject(user));
 };
 
 export const createUser = async (req: Request, res: Response) => {
-  checkAllUserFieldsRecived(req.body);
+  const result = allFieldsSendedFrom('user', req.body);
+  if (result.isLeft())
+    return res
+      .status(result.value.status)
+      .json({ message: result.value.message });
 
   const { name, email, password } = req.body;
-  checkEmailAlreadyInUse(email);
+
+  const resultEmail = emaillAreadyInUse(email);
+  if (resultEmail.isLeft())
+    return res
+      .status(resultEmail.value.status)
+      .json({ message: resultEmail.value.message });
 
   const id = randomUUID();
   const user: IUser = {
@@ -39,29 +59,23 @@ export const createUser = async (req: Request, res: Response) => {
   };
   usersMemory.push(user); // save user in fake database
 
-  res.status(201).json(refineUserObject(user));
+  return res.status(201).json(refineUserObject(user));
 };
 
 export const updateUser = async (req: Request, res: Response) => {
-  const idFromCookie = getIdFromHttpCookie(req);
-  const idFromParam = getIdFromParam(req.params.id);
-
-  checkUserIsOwner(idFromCookie, idFromParam);
+  const id = handleRequest(req);
 
   const body = req.body as IUser;
-  const user = updateUserInfo(idFromCookie, body);
+  const user = updateUserInfo(id, body);
 
   res.status(200).json(refineUserObject(user));
 };
 
 export const deleteUser = async (req: Request, res: Response) => {
-  const idFromCookie = getIdFromHttpCookie(req);
-  const idFromParam = getIdFromParam(req.params.id);
+  const id = handleRequest(req);
 
-  checkUserIsOwner(idFromCookie, idFromParam);
+  const userIndex = usersMemory.findIndex((user) => user.id === id);
+  const userHasBeenDeleted = !!usersMemory.splice(userIndex, 1).length; // delete user from fake database
 
-  const userIndex = usersMemory.findIndex((user) => user.id === idFromCookie);
-  usersMemory.splice(userIndex, 1); // delete user from fake database
-
-  res.status(200).json(true);
+  res.status(200).json(userHasBeenDeleted);
 };
